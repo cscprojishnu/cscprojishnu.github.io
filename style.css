@@ -2073,3 +2073,129 @@ footer {
 .publication-link:hover span {
     transform: translate(3px, -3px);
 }
+
+
+/* =========================================
+   PIXELATED PROFILE PHOTO REVEAL
+========================================= */
+
+.profile-reveal {
+    position: relative;
+    width: 320px;
+    height: 420px;
+
+    overflow: hidden;
+
+    border-radius: 18px;
+
+    border: 1px solid rgba(255, 255, 255, 0.15);
+
+    background: #080808;
+
+    cursor: crosshair;
+
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.6);
+
+    transition: all 0.5s ease;
+}
+
+
+/* IMAGE */
+
+.profile-image {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    filter:
+        blur(14px)
+        contrast(1.2)
+        grayscale(100%);
+
+    transform: scale(1.08);
+
+    transition:
+        filter 0.8s ease,
+        transform 0.8s ease;
+}
+
+
+/* DARK OVERLAY */
+
+.profile-overlay {
+    position: absolute;
+
+    inset: 0;
+
+    display: flex;
+
+    align-items: flex-end;
+    justify-content: center;
+
+    padding-bottom: 25px;
+
+    background:
+        linear-gradient(
+            to top,
+            rgba(0, 0, 0, 0.85),
+            transparent 45%
+        );
+
+    transition: opacity 0.5s ease;
+
+    pointer-events: none;
+}
+
+
+.profile-overlay span {
+    padding: 8px 14px;
+
+    border: 1px solid rgba(255, 255, 255, 0.25);
+
+    border-radius: 50px;
+
+    font-size: 0.65rem;
+
+    letter-spacing: 2px;
+
+    color: rgba(255, 255, 255, 0.7);
+
+    background: rgba(0, 0, 0, 0.35);
+
+    backdrop-filter: blur(8px);
+}
+
+
+/* HOVER EFFECT */
+
+.profile-reveal:hover .profile-image {
+
+    filter:
+        blur(0)
+        contrast(1)
+        grayscale(0);
+
+    transform: scale(1);
+}
+
+
+.profile-reveal:hover .profile-overlay {
+    opacity: 0;
+}
+
+
+/* SUBTLE FRAME EFFECT */
+
+.profile-reveal:hover {
+
+    border-color: rgba(255, 255, 255, 0.4);
+
+    box-shadow:
+        0 25px 80px rgba(0, 0, 0, 0.75);
+
+    transform: translateY(-5px);
+}
