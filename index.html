@@ -15,13 +15,10 @@
     >
 
     <!-- Google Fonts -->
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
 
-    <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin
-    >
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
@@ -29,468 +26,373 @@
     >
 
     <!-- Font Awesome -->
+
     <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     >
 
     <!-- Main CSS -->
+
     <link rel="stylesheet" href="style.css">
 
 
     <!-- =====================================================
-         INDEX.HTML ONLY OVERRIDES
-         ===================================================== -->
+         INDEX-ONLY HERO FIXES
+         No style.css changes required
+    ====================================================== -->
 
     <style>
 
         /* =====================================================
-           HERO — KEEP ALL THREE ELEMENTS ON ONE LINE
-           ===================================================== */
+           HERO: THREE COLUMNS ON ONE LINE
+        ====================================================== */
 
         .hero-grid {
+
             display: grid !important;
 
-            /*
-             * COLUMN 1 = Profile
-             * COLUMN 2 = Introduction
-             * COLUMN 3 = Research Orbit
-             */
             grid-template-columns:
-                minmax(170px, 220px)
+                220px
                 minmax(0, 1fr)
-                minmax(220px, 280px) !important;
+                300px !important;
 
             align-items: center !important;
 
-            gap: clamp(24px, 4vw, 70px) !important;
+            gap: clamp(28px, 4vw, 70px) !important;
 
-            width: 100% !important;
+            width: min(1180px, calc(100% - 48px)) !important;
 
-            max-width: 1400px !important;
+            margin-inline: auto !important;
 
-            margin: 0 auto !important;
         }
 
 
-        /* =====================================================
-           PROFILE IMAGE
-           ===================================================== */
+        .hero-profile,
+        .hero-content,
+        .research-visual {
 
-        .profile-reveal {
-            position: relative;
+            min-width: 0 !important;
 
-            width: 100%;
-
-            max-width: 220px;
-
-            overflow: hidden;
-
-            border-radius: 10px;
-
-            cursor: pointer;
-
-            isolation: isolate;
         }
 
 
-        .profile-image {
-            display: block;
+        .hero-profile {
 
-            width: 100%;
+            align-self: center !important;
 
-            height: auto;
-
-            /*
-             * IMPORTANT:
-             * Image starts blurred.
-             */
-            filter: blur(18px);
-
-            transform: scale(1.06);
-
-            transition:
-                filter 0.8s ease,
-                transform 0.8s ease;
         }
 
-
-        /*
-         * Once JS adds .revealed,
-         * the image becomes permanently clear.
-         */
-        .profile-reveal.revealed .profile-image {
-            filter: blur(0);
-
-            transform: scale(1);
-        }
-
-
-        /* =====================================================
-           PROFILE OVERLAY
-           ===================================================== */
-
-        .profile-overlay {
-            position: absolute;
-
-            inset: 0;
-
-            display: flex;
-
-            align-items: flex-end;
-
-            justify-content: center;
-
-            padding: 18px;
-
-            background:
-                linear-gradient(
-                    to top,
-                    rgba(0, 0, 0, 0.65),
-                    transparent 55%
-                );
-
-            transition:
-                opacity 0.5s ease;
-
-            pointer-events: none;
-        }
-
-
-        .profile-overlay span {
-            display: inline-flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            gap: 7px;
-
-            padding: 7px 12px;
-
-            border: 1px solid rgba(255,255,255,0.18);
-
-            border-radius: 999px;
-
-            background: rgba(0,0,0,0.45);
-
-            backdrop-filter: blur(8px);
-
-            color: #ffffff;
-
-            font-size: 8px;
-
-            letter-spacing: 0.08em;
-
-            white-space: nowrap;
-        }
-
-
-        /*
-         * Hide the "HOVER TO REVEAL" message
-         * after the image has been revealed.
-         */
-        .profile-reveal.revealed .profile-overlay {
-            opacity: 0;
-        }
-
-
-        /*
-         * Show a subtle interaction indication
-         * before reveal.
-         */
-        .profile-reveal:not(.revealed):hover .profile-image {
-            transform: scale(1.09);
-        }
-
-
-        /* =====================================================
-           PROFILE CAPTION
-           ===================================================== */
-
-        .profile-caption {
-            display: flex;
-
-            align-items: center;
-
-            gap: 5px;
-
-            margin-top: 8px;
-
-            font-size: 7px;
-
-            line-height: 1.3;
-
-            white-space: nowrap;
-        }
-
-
-        .profile-caption span:first-child {
-            font-weight: 600;
-        }
-
-
-        /* =====================================================
-           HERO CONTENT
-           ===================================================== */
 
         .hero-content {
-            min-width: 0;
 
-            width: 100%;
-        }
+            align-self: center !important;
 
-
-        /*
-         * Prevent long words/links from pushing
-         * the third column onto another line.
-         */
-        .hero-content h1,
-        .hero-content p,
-        .hero-content .hero-tagline {
-            overflow-wrap: break-word;
-
-            word-break: normal;
-        }
-
-
-        /* =====================================================
-           SOCIAL LINKS — KEEP THEM ON ONE LINE
-           ===================================================== */
-
-        .social-links {
-            display: flex !important;
-
-            flex-direction: row !important;
-
-            flex-wrap: nowrap !important;
-
-            align-items: center !important;
-
-            gap: 8px !important;
-
-            width: 100% !important;
-
-            overflow-x: auto;
-
-            scrollbar-width: none;
-        }
-
-
-        .social-links::-webkit-scrollbar {
-            display: none;
-        }
-
-
-        .social-link {
-            flex: 0 0 auto !important;
-
-            white-space: nowrap !important;
         }
 
 
         /* =====================================================
            RESEARCH VISUAL
-           ===================================================== */
+        ====================================================== */
 
         .research-visual {
-            position: relative;
 
-            width: min(100%, 280px);
+            position: relative !important;
 
-            aspect-ratio: 1 / 1;
+            width: 300px !important;
 
-            margin: 0 auto;
+            height: 300px !important;
 
-            flex-shrink: 0;
+            min-height: 300px !important;
+
+            margin: 0 auto !important;
+
+            overflow: visible !important;
+
+            flex: none !important;
+
+        }
+
+
+        .research-visual .visual-glow {
+
+            position: absolute !important;
+
+            inset: 50px !important;
+
+            pointer-events: none !important;
+
+        }
+
+
+        /* =====================================================
+           RESEARCH CORE
+        ====================================================== */
+
+        .research-visual .research-core {
+
+            position: absolute !important;
+
+            left: 50% !important;
+
+            top: 50% !important;
+
+            width: 92px !important;
+
+            height: 92px !important;
+
+            transform: translate(-50%, -50%) !important;
+
+            z-index: 10 !important;
+
+        }
+
+
+        /* =====================================================
+           ORBITS
+        ====================================================== */
+
+        .research-visual .research-orbit {
+
+            position: absolute !important;
+
+            left: 50% !important;
+
+            top: 50% !important;
+
+            border-radius: 50% !important;
+
+            transform: translate(-50%, -50%) !important;
+
+            pointer-events: none !important;
+
+        }
+
+
+        .research-visual .orbit-one {
+
+            width: 150px !important;
+
+            height: 150px !important;
+
+        }
+
+
+        .research-visual .orbit-two {
+
+            width: 220px !important;
+
+            height: 220px !important;
+
+        }
+
+
+        .research-visual .orbit-three {
+
+            width: 285px !important;
+
+            height: 285px !important;
+
+        }
+
+
+        /* =====================================================
+           ORBIT NODES
+        ====================================================== */
+
+        .research-visual .orbit-node {
+
+            position: absolute !important;
+
+            width: 62px !important;
+
+            height: 62px !important;
+
+            border-radius: 50% !important;
+
+            display: flex !important;
+
+            flex-direction: column !important;
+
+            align-items: center !important;
+
+            justify-content: center !important;
+
+            text-align: center !important;
+
+            z-index: 20 !important;
+
+            transform: none !important;
+
+        }
+
+
+        /* Vision */
+
+        .research-visual .node-one {
+
+            left: 50% !important;
+
+            top: 0 !important;
+
+            transform: translateX(-50%) !important;
+
+        }
+
+
+        /* ML / DL */
+
+        .research-visual .node-two {
+
+            right: 0 !important;
+
+            top: 50% !important;
+
+            transform: translateY(-50%) !important;
+
+        }
+
+
+        /* XAI */
+
+        .research-visual .node-three {
+
+            right: 22px !important;
+
+            bottom: 8px !important;
+
+        }
+
+
+        /* Quantum */
+
+        .research-visual .node-four {
+
+            left: 22px !important;
+
+            bottom: 8px !important;
+
+        }
+
+
+        /* Edge Computing */
+
+        .research-visual .node-five {
+
+            left: 0 !important;
+
+            top: 50% !important;
+
+            transform: translateY(-50%) !important;
+
+        }
+
+
+        /* Remote Sensing */
+
+        .research-visual .node-six {
+
+            left: 50% !important;
+
+            bottom: 0 !important;
+
+            transform: translateX(-50%) !important;
+
+        }
+
+
+        /* =====================================================
+           PROFILE IMAGE REVEAL
+        ====================================================== */
+
+        .profile-reveal {
+
+            cursor: pointer !important;
+
+        }
+
+
+        .profile-reveal .profile-image {
+
+            transition:
+                filter .35s ease,
+                opacity .35s ease,
+                transform .35s ease !important;
+
         }
 
 
         /*
-         * Make sure the orbit doesn't accidentally
-         * create another grid row.
+         * Once revealed, image remains clear.
          */
-        .research-visual > * {
-            box-sizing: border-box;
+
+        .profile-reveal.is-revealed .profile-image {
+
+            filter: none !important;
+
+            opacity: 1 !important;
+
+        }
+
+
+        /*
+         * Hide the "HOVER TO REVEAL" overlay permanently
+         * after the first reveal.
+         */
+
+        .profile-reveal.is-revealed .profile-overlay {
+
+            opacity: 0 !important;
+
+            pointer-events: none !important;
+
+        }
+
+
+        .profile-reveal.is-revealed:hover .profile-overlay {
+
+            opacity: 0 !important;
+
         }
 
 
         /* =====================================================
-           HERO BUTTONS
-           ===================================================== */
+           MOBILE
+        ====================================================== */
 
-        .hero-buttons {
-            display: flex;
-
-            flex-wrap: wrap;
-
-            align-items: center;
-
-            gap: 8px;
-        }
-
-
-        /* =====================================================
-           DESKTOP
-           ===================================================== */
-
-        @media (min-width: 1100px) {
+        @media (max-width: 900px) {
 
             .hero-grid {
-                grid-template-columns:
-                    200px
-                    minmax(420px, 1fr)
-                    270px !important;
-            }
 
-            .hero-profile {
-                width: 200px;
-            }
-
-            .profile-reveal {
-                max-width: 200px;
-            }
-
-            .research-visual {
-                width: 270px;
-                height: 270px;
-            }
-        }
-
-
-        /* =====================================================
-           MEDIUM SCREENS
-           ===================================================== */
-
-        @media (min-width: 850px) and (max-width: 1099px) {
-
-            .hero-grid {
-                grid-template-columns:
-                    170px
-                    minmax(300px, 1fr)
-                    220px !important;
-
-                gap: 24px !important;
-            }
-
-            .hero-profile {
-                width: 170px;
-            }
-
-            .profile-reveal {
-                max-width: 170px;
-            }
-
-            .research-visual {
-                width: 220px;
-                height: 220px;
-            }
-        }
-
-
-        /* =====================================================
-           TABLET / MOBILE
-           ===================================================== */
-
-        @media (max-width: 849px) {
-
-            /*
-             * On narrow screens, forcing three columns
-             * would make the content unreadable.
-             *
-             * Desktop = one line.
-             * Mobile = intentional vertical layout.
-             */
-            .hero-grid {
                 grid-template-columns: 1fr !important;
 
-                justify-items: center;
+                width: min(680px, calc(100% - 32px)) !important;
 
-                text-align: center;
+                text-align: center !important;
 
-                gap: 32px !important;
             }
 
 
-            .hero-profile {
-                width: min(220px, 70vw);
-
-                display: flex;
-
-                flex-direction: column;
-
-                align-items: center;
-            }
-
-
-            .profile-reveal {
-                max-width: 220px;
-            }
-
-
+            .hero-profile,
             .hero-content {
-                width: 100%;
 
-                text-align: center;
+                width: 100% !important;
+
             }
 
 
-            .social-links {
-                justify-content: center;
+            .research-visual {
+
+                margin-inline: auto !important;
+
             }
 
 
+            .social-links,
             .hero-buttons {
-                justify-content: center;
-            }
 
+                justify-content: center !important;
 
-            .research-visual {
-                width: min(280px, 80vw);
-
-                height: min(280px, 80vw);
-            }
-        }
-
-
-        /* =====================================================
-           SMALL PHONES
-           ===================================================== */
-
-        @media (max-width: 480px) {
-
-            .hero-grid {
-                gap: 24px !important;
-            }
-
-
-            .social-links {
-                justify-content: flex-start;
-            }
-
-
-            .profile-caption {
-                justify-content: center;
-            }
-
-
-            .research-visual {
-                width: 240px;
-
-                height: 240px;
-            }
-        }
-
-
-        /* =====================================================
-           ACCESSIBILITY
-           ===================================================== */
-
-        @media (prefers-reduced-motion: reduce) {
-
-            .profile-image,
-            .profile-overlay {
-                transition: none;
             }
 
         }
@@ -511,9 +413,10 @@
 
     <div class="nav-container">
 
-
         <a href="#about" class="logo">
+
             JT<span>.</span>
+
         </a>
 
 
@@ -548,7 +451,6 @@
 
         </button>
 
-
     </div>
 
 </header>
@@ -562,13 +464,11 @@
      ABOUT / HERO
 ===================================================== -->
 
-<!-- =====================================================
-     ABOUT / HERO
-===================================================== -->
-
 <section id="about" class="hero">
 
+
     <div class="hero-grid">
+
 
         <!-- =================================================
              PROFILE IMAGE
@@ -576,7 +476,11 @@
 
         <div class="hero-profile">
 
-            <div class="profile-reveal">
+
+            <div
+                class="profile-reveal"
+                id="profileReveal"
+            >
 
                 <img
                     src="images/profile.JPG"
@@ -584,21 +488,32 @@
                     class="profile-image"
                 >
 
+
                 <div class="profile-overlay">
+
                     <span>
+
                         <i class="fa-solid fa-eye"></i>
+
                         HOVER TO REVEAL
+
                     </span>
+
                 </div>
 
             </div>
 
+
             <div class="profile-caption">
+
                 <span>RESEARCHER</span>
+
                 <span>AI • CS • DATA</span>
+
             </div>
 
         </div>
+
 
 
         <!-- =================================================
@@ -607,36 +522,53 @@
 
         <div class="hero-content">
 
+
             <div class="availability">
+
                 <span class="status-dot"></span>
+
                 Open to Research Collaborations
+
             </div>
+
 
             <p class="hero-label">
 
                 COMPUTER SCIENCE
+
                 <span>•</span>
+
                 ARTIFICIAL INTELLIGENCE
+
                 <span>•</span>
+
                 RESEARCH
 
             </p>
 
+
             <h1>
 
                 Jishnu Teja
+
                 <span>Dandamudi</span>
 
             </h1>
 
+
             <div class="hero-tagline">
 
                 Building intelligent systems that
-                <strong>see, reason, explain and act.</strong>
+
+                <strong>
+                    see, reason, explain and act.
+                </strong>
 
             </div>
 
+
             <div class="hero-line"></div>
+
 
             <p class="hero-description">
 
@@ -647,6 +579,7 @@
 
             </p>
 
+
             <p class="hero-description">
 
                 Currently pursuing a
@@ -656,6 +589,7 @@
                 strong focus on research and practical intelligent systems.
 
             </p>
+
 
             <p class="hero-description secondary-description">
 
@@ -676,6 +610,7 @@
 
             <div class="social-links">
 
+
                 <a
                     href="https://www.linkedin.com/in/djishnuteja/"
                     target="_blank"
@@ -683,8 +618,11 @@
                     class="social-link"
                     aria-label="LinkedIn"
                 >
+
                     <i class="fa-brands fa-linkedin-in"></i>
+
                     <span>LinkedIn</span>
+
                 </a>
 
 
@@ -695,8 +633,11 @@
                     class="social-link"
                     aria-label="Google Scholar"
                 >
+
                     <i class="fa-solid fa-graduation-cap"></i>
+
                     <span>Scholar</span>
+
                 </a>
 
 
@@ -707,8 +648,11 @@
                     class="social-link"
                     aria-label="Scopus"
                 >
+
                     <i class="fa-solid fa-book-open"></i>
+
                     <span>Scopus</span>
+
                 </a>
 
 
@@ -719,8 +663,11 @@
                     class="social-link"
                     aria-label="GitHub"
                 >
+
                     <i class="fa-brands fa-github"></i>
+
                     <span>GitHub</span>
+
                 </a>
 
 
@@ -729,8 +676,11 @@
                     class="social-link"
                     aria-label="Email"
                 >
+
                     <i class="fa-solid fa-envelope"></i>
+
                     <span>Email</span>
+
                 </a>
 
             </div>
@@ -740,12 +690,16 @@
 
             <div class="hero-buttons">
 
+
                 <a
                     href="#publications"
                     class="btn primary-btn"
                 >
+
                     Explore My Research
+
                     <i class="fa-solid fa-arrow-down"></i>
+
                 </a>
 
 
@@ -753,8 +707,11 @@
                     href="#education"
                     class="btn secondary-btn"
                 >
+
                     Academic Journey
+
                     <i class="fa-solid fa-arrow-right"></i>
+
                 </a>
 
             </div>
@@ -762,16 +719,24 @@
         </div>
 
 
+
         <!-- =================================================
              RESEARCH ORBIT
         ================================================== -->
 
-        <div class="research-visual">
+        <div
+            class="research-visual"
+            aria-label="Research areas"
+        >
+
 
             <div class="visual-glow"></div>
 
+
             <div class="research-orbit orbit-one"></div>
+
             <div class="research-orbit orbit-two"></div>
+
             <div class="research-orbit orbit-three"></div>
 
 
@@ -849,11 +814,14 @@
 
             </div>
 
+
         </div>
+
 
     </div>
 
 </section>
+
 
 
 <!-- =====================================================
@@ -917,8 +885,10 @@
         <h2>Education</h2>
 
         <span>
+
             Building a multidisciplinary foundation across
             computer science, artificial intelligence and data science.
+
         </span>
 
     </div>
@@ -940,18 +910,24 @@
 
 
             <span class="education-status">
+
                 CURRENT
+
             </span>
 
 
             <h3>
+
                 B.Tech in Computer Science and Engineering
                 (Artificial Intelligence)
+
             </h3>
 
 
             <h4>
+
                 Amrita Vishwa Vidyapeetham
+
             </h4>
 
 
@@ -992,17 +968,23 @@
 
 
             <span class="education-status">
+
                 CURRENT
+
             </span>
 
 
             <h3>
+
                 BS in Data Science and Applications
+
             </h3>
 
 
             <h4>
+
                 Indian Institute of Technology Madras
+
             </h4>
 
 
@@ -1065,14 +1047,15 @@
         <h2>Publications</h2>
 
         <span>
+
             Research contributions, scholarly publications and ongoing work.
+
         </span>
 
     </div>
 
 
     <div class="publication-timeline">
-
 
 
         <!-- PUBLICATION 01 -->
@@ -1085,7 +1068,9 @@
 
             </div>
 
+
             <div class="publication-content">
+
 
                 <div class="publication-top">
 
@@ -1099,39 +1084,64 @@
 
                 </div>
 
+
                 <h3>
                     Publication Title
                 </h3>
 
+
                 <p>
+
                     Add approximately three lines describing the research
                     problem, proposed methodology and the primary contribution
                     of this work.
+
                 </p>
+
 
                 <div class="publication-details">
 
+
                     <span>
+
                         <strong>Published At</strong>
-                        __________________
+
+                        ____________________
+
                     </span>
 
+
                     <span>
+
                         <strong>Venue</strong>
-                        __________________
+
+                        ____________________
+
                     </span>
+
 
                     <span>
+
                         <strong>Type</strong>
-                        __________________
+
+                        ____________________
+
                     </span>
 
-                    <a href="https://ieeexplore.ieee.org/abstract/document/11341086"
-                       class="publication-link"
-                       target="_blank"
-                       rel="noopener noreferrer">
-                        View Publication <span>↗</span>
+
+                    <a
+                        href="https://ieeexplore.ieee.org/abstract/document/11341086"
+                        class="publication-link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+
+                        View Publication
+
+                        <span>↗</span>
+
                     </a>
+
 
                 </div>
 
@@ -1146,10 +1156,14 @@
         <article class="publication-item">
 
             <div class="publication-marker">
+
                 <span>02</span>
+
             </div>
 
+
             <div class="publication-content">
+
 
                 <div class="publication-top">
 
@@ -1163,37 +1177,64 @@
 
                 </div>
 
-                <h3>Publication Title</h3>
+
+                <h3>
+                    Publication Title
+                </h3>
+
 
                 <p>
+
                     Add approximately three lines describing the research
                     problem, proposed methodology and the primary contribution
                     of this work.
+
                 </p>
+
 
                 <div class="publication-details">
 
+
                     <span>
+
                         <strong>Published At</strong>
-                        __________________
+
+                        ____________________
+
                     </span>
 
+
                     <span>
+
                         <strong>Venue</strong>
-                        __________________
+
+                        ____________________
+
                     </span>
+
 
                     <span>
+
                         <strong>Type</strong>
-                        __________________
+
+                        ____________________
+
                     </span>
 
-                    <a href="https://ieeexplore.ieee.org/abstract/document/11341086"
-                       class="publication-link"
-                       target="_blank"
-                       rel="noopener noreferrer">
-                        View Publication <span>↗</span>
+
+                    <a
+                        href="https://ieeexplore.ieee.org/abstract/document/11341086"
+                        class="publication-link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+
+                        View Publication
+
+                        <span>↗</span>
+
                     </a>
+
 
                 </div>
 
@@ -1208,10 +1249,14 @@
         <article class="publication-item">
 
             <div class="publication-marker">
+
                 <span>03</span>
+
             </div>
 
+
             <div class="publication-content">
+
 
                 <div class="publication-top">
 
@@ -1225,37 +1270,64 @@
 
                 </div>
 
-                <h3>Publication Title</h3>
+
+                <h3>
+                    Publication Title
+                </h3>
+
 
                 <p>
+
                     Add approximately three lines describing the research
                     problem, proposed methodology and the primary contribution
                     of this work.
+
                 </p>
+
 
                 <div class="publication-details">
 
+
                     <span>
+
                         <strong>Published At</strong>
-                        __________________
+
+                        ____________________
+
                     </span>
 
+
                     <span>
+
                         <strong>Venue</strong>
-                        __________________
+
+                        ____________________
+
                     </span>
+
 
                     <span>
+
                         <strong>Type</strong>
-                        __________________
+
+                        ____________________
+
                     </span>
 
-                    <a href="https://ieeexplore.ieee.org/abstract/document/11341086"
-                       class="publication-link"
-                       target="_blank"
-                       rel="noopener noreferrer">
-                        View Publication <span>↗</span>
+
+                    <a
+                        href="https://ieeexplore.ieee.org/abstract/document/11341086"
+                        class="publication-link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+
+                        View Publication
+
+                        <span>↗</span>
+
                     </a>
+
 
                 </div>
 
@@ -1270,10 +1342,14 @@
         <article class="publication-item">
 
             <div class="publication-marker">
+
                 <span>04</span>
+
             </div>
 
+
             <div class="publication-content">
+
 
                 <div class="publication-top">
 
@@ -1287,37 +1363,64 @@
 
                 </div>
 
-                <h3>Publication Title</h3>
+
+                <h3>
+                    Publication Title
+                </h3>
+
 
                 <p>
+
                     Add approximately three lines describing the research
                     problem, proposed methodology and the primary contribution
                     of this work.
+
                 </p>
+
 
                 <div class="publication-details">
 
+
                     <span>
+
                         <strong>Published At</strong>
-                        __________________
+
+                        ____________________
+
                     </span>
 
+
                     <span>
+
                         <strong>Venue</strong>
-                        __________________
+
+                        ____________________
+
                     </span>
+
 
                     <span>
+
                         <strong>Type</strong>
-                        __________________
+
+                        ____________________
+
                     </span>
 
-                    <a href="https://ieeexplore.ieee.org/abstract/document/11341086"
-                       class="publication-link"
-                       target="_blank"
-                       rel="noopener noreferrer">
-                        View Publication <span>↗</span>
+
+                    <a
+                        href="https://ieeexplore.ieee.org/abstract/document/11341086"
+                        class="publication-link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+
+                        View Publication
+
+                        <span>↗</span>
+
                     </a>
+
 
                 </div>
 
@@ -1332,10 +1435,14 @@
         <article class="publication-item">
 
             <div class="publication-marker">
+
                 <span>05</span>
+
             </div>
 
+
             <div class="publication-content">
+
 
                 <div class="publication-top">
 
@@ -1349,37 +1456,64 @@
 
                 </div>
 
-                <h3>Publication Title</h3>
+
+                <h3>
+                    Publication Title
+                </h3>
+
 
                 <p>
+
                     Add approximately three lines describing the research
                     problem, proposed methodology and the primary contribution
                     of this work.
+
                 </p>
+
 
                 <div class="publication-details">
 
+
                     <span>
+
                         <strong>Published At</strong>
-                        __________________
+
+                        ____________________
+
                     </span>
 
+
                     <span>
+
                         <strong>Venue</strong>
-                        __________________
+
+                        ____________________
+
                     </span>
+
 
                     <span>
+
                         <strong>Type</strong>
-                        __________________
+
+                        ____________________
+
                     </span>
 
-                    <a href="https://ieeexplore.ieee.org/abstract/document/11341086"
-                       class="publication-link"
-                       target="_blank"
-                       rel="noopener noreferrer">
-                        View Publication <span>↗</span>
+
+                    <a
+                        href="https://ieeexplore.ieee.org/abstract/document/11341086"
+                        class="publication-link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+
+                        View Publication
+
+                        <span>↗</span>
+
                     </a>
+
 
                 </div>
 
@@ -1394,10 +1528,14 @@
         <article class="publication-item">
 
             <div class="publication-marker">
+
                 <span>06</span>
+
             </div>
 
+
             <div class="publication-content">
+
 
                 <div class="publication-top">
 
@@ -1411,37 +1549,64 @@
 
                 </div>
 
-                <h3>Publication Title</h3>
+
+                <h3>
+                    Publication Title
+                </h3>
+
 
                 <p>
+
                     Add approximately three lines describing the research
                     problem, proposed methodology and the primary contribution
                     of this work.
+
                 </p>
+
 
                 <div class="publication-details">
 
+
                     <span>
+
                         <strong>Published At</strong>
-                        __________________
+
+                        ____________________
+
                     </span>
 
+
                     <span>
+
                         <strong>Venue</strong>
-                        __________________
+
+                        ____________________
+
                     </span>
+
 
                     <span>
+
                         <strong>Type</strong>
-                        __________________
+
+                        ____________________
+
                     </span>
 
-                    <a href="https://ieeexplore.ieee.org/abstract/document/11341086"
-                       class="publication-link"
-                       target="_blank"
-                       rel="noopener noreferrer">
-                        View Publication <span>↗</span>
+
+                    <a
+                        href="https://ieeexplore.ieee.org/abstract/document/11341086"
+                        class="publication-link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+
+                        View Publication
+
+                        <span>↗</span>
+
                     </a>
+
 
                 </div>
 
@@ -1456,10 +1621,14 @@
         <article class="publication-item">
 
             <div class="publication-marker">
+
                 <span>07</span>
+
             </div>
 
+
             <div class="publication-content">
+
 
                 <div class="publication-top">
 
@@ -1473,37 +1642,64 @@
 
                 </div>
 
-                <h3>Publication Title</h3>
+
+                <h3>
+                    Publication Title
+                </h3>
+
 
                 <p>
+
                     Add approximately three lines describing the research
                     problem, proposed methodology and the primary contribution
                     of this work.
+
                 </p>
+
 
                 <div class="publication-details">
 
+
                     <span>
+
                         <strong>Published At</strong>
-                        __________________
+
+                        ____________________
+
                     </span>
 
+
                     <span>
+
                         <strong>Venue</strong>
-                        __________________
+
+                        ____________________
+
                     </span>
+
 
                     <span>
+
                         <strong>Type</strong>
-                        __________________
+
+                        ____________________
+
                     </span>
 
-                    <a href="https://ieeexplore.ieee.org/abstract/document/11341086"
-                       class="publication-link"
-                       target="_blank"
-                       rel="noopener noreferrer">
-                        View Publication <span>↗</span>
+
+                    <a
+                        href="https://ieeexplore.ieee.org/abstract/document/11341086"
+                        class="publication-link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+
+                        View Publication
+
+                        <span>↗</span>
+
                     </a>
+
 
                 </div>
 
@@ -1518,10 +1714,14 @@
         <article class="publication-item">
 
             <div class="publication-marker">
+
                 <span>08</span>
+
             </div>
 
+
             <div class="publication-content">
+
 
                 <div class="publication-top">
 
@@ -1535,37 +1735,64 @@
 
                 </div>
 
-                <h3>Publication Title</h3>
+
+                <h3>
+                    Publication Title
+                </h3>
+
 
                 <p>
+
                     Add approximately three lines describing the research
                     problem, proposed methodology and the primary contribution
                     of this work.
+
                 </p>
+
 
                 <div class="publication-details">
 
+
                     <span>
+
                         <strong>Published At</strong>
-                        __________________
+
+                        ____________________
+
                     </span>
 
+
                     <span>
+
                         <strong>Venue</strong>
-                        __________________
+
+                        ____________________
+
                     </span>
+
 
                     <span>
+
                         <strong>Type</strong>
-                        __________________
+
+                        ____________________
+
                     </span>
 
-                    <a href="https://ieeexplore.ieee.org/abstract/document/11341086"
-                       class="publication-link"
-                       target="_blank"
-                       rel="noopener noreferrer">
-                        View Publication <span>↗</span>
+
+                    <a
+                        href="https://ieeexplore.ieee.org/abstract/document/11341086"
+                        class="publication-link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+
+                        View Publication
+
+                        <span>↗</span>
+
                     </a>
+
 
                 </div>
 
@@ -1580,10 +1807,14 @@
         <article class="publication-item">
 
             <div class="publication-marker">
+
                 <span>09</span>
+
             </div>
 
+
             <div class="publication-content">
+
 
                 <div class="publication-top">
 
@@ -1597,37 +1828,64 @@
 
                 </div>
 
-                <h3>Publication Title</h3>
+
+                <h3>
+                    Publication Title
+                </h3>
+
 
                 <p>
+
                     Add approximately three lines describing the research
                     problem, proposed methodology and the primary contribution
                     of this work.
+
                 </p>
+
 
                 <div class="publication-details">
 
+
                     <span>
+
                         <strong>Published At</strong>
-                        __________________
+
+                        ____________________
+
                     </span>
 
+
                     <span>
+
                         <strong>Venue</strong>
-                        __________________
+
+                        ____________________
+
                     </span>
+
 
                     <span>
+
                         <strong>Type</strong>
-                        __________________
+
+                        ____________________
+
                     </span>
 
-                    <a href="https://ieeexplore.ieee.org/abstract/document/11341086"
-                       class="publication-link"
-                       target="_blank"
-                       rel="noopener noreferrer">
-                        View Publication <span>↗</span>
+
+                    <a
+                        href="https://ieeexplore.ieee.org/abstract/document/11341086"
+                        class="publication-link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+
+                        View Publication
+
+                        <span>↗</span>
+
                     </a>
+
 
                 </div>
 
@@ -1642,10 +1900,14 @@
         <article class="publication-item">
 
             <div class="publication-marker">
+
                 <span>10</span>
+
             </div>
 
+
             <div class="publication-content">
+
 
                 <div class="publication-top">
 
@@ -1659,37 +1921,64 @@
 
                 </div>
 
-                <h3>Publication Title</h3>
+
+                <h3>
+                    Publication Title
+                </h3>
+
 
                 <p>
+
                     Add approximately three lines describing the research
                     problem, proposed methodology and the primary contribution
                     of this work.
+
                 </p>
+
 
                 <div class="publication-details">
 
+
                     <span>
+
                         <strong>Published At</strong>
-                        __________________
+
+                        ____________________
+
                     </span>
 
+
                     <span>
+
                         <strong>Venue</strong>
-                        __________________
+
+                        ____________________
+
                     </span>
+
 
                     <span>
+
                         <strong>Type</strong>
-                        __________________
+
+                        ____________________
+
                     </span>
 
-                    <a href="https://ieeexplore.ieee.org/abstract/document/11341086"
-                       class="publication-link"
-                       target="_blank"
-                       rel="noopener noreferrer">
-                        View Publication <span>↗</span>
+
+                    <a
+                        href="https://ieeexplore.ieee.org/abstract/document/11341086"
+                        class="publication-link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+
+                        View Publication
+
+                        <span>↗</span>
+
                     </a>
+
 
                 </div>
 
@@ -1704,10 +1993,14 @@
         <article class="publication-item">
 
             <div class="publication-marker">
+
                 <span>11</span>
+
             </div>
 
+
             <div class="publication-content">
+
 
                 <div class="publication-top">
 
@@ -1721,37 +2014,64 @@
 
                 </div>
 
-                <h3>Publication Title</h3>
+
+                <h3>
+                    Publication Title
+                </h3>
+
 
                 <p>
+
                     Add approximately three lines describing the research
                     problem, proposed methodology and the primary contribution
                     of this work.
+
                 </p>
+
 
                 <div class="publication-details">
 
+
                     <span>
+
                         <strong>Published At</strong>
-                        __________________
+
+                        ____________________
+
                     </span>
 
+
                     <span>
+
                         <strong>Venue</strong>
-                        __________________
+
+                        ____________________
+
                     </span>
+
 
                     <span>
+
                         <strong>Type</strong>
-                        __________________
+
+                        ____________________
+
                     </span>
 
-                    <a href="https://ieeexplore.ieee.org/abstract/document/11341086"
-                       class="publication-link"
-                       target="_blank"
-                       rel="noopener noreferrer">
-                        View Publication <span>↗</span>
+
+                    <a
+                        href="https://ieeexplore.ieee.org/abstract/document/11341086"
+                        class="publication-link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+
+                        View Publication
+
+                        <span>↗</span>
+
                     </a>
+
 
                 </div>
 
@@ -1766,10 +2086,14 @@
         <article class="publication-item">
 
             <div class="publication-marker">
+
                 <span>12</span>
+
             </div>
 
+
             <div class="publication-content">
+
 
                 <div class="publication-top">
 
@@ -1783,37 +2107,64 @@
 
                 </div>
 
-                <h3>Publication Title</h3>
+
+                <h3>
+                    Publication Title
+                </h3>
+
 
                 <p>
+
                     Add approximately three lines describing the research
                     problem, proposed methodology and the primary contribution
                     of this work.
+
                 </p>
+
 
                 <div class="publication-details">
 
+
                     <span>
+
                         <strong>Published At</strong>
-                        __________________
+
+                        ____________________
+
                     </span>
 
+
                     <span>
+
                         <strong>Venue</strong>
-                        __________________
+
+                        ____________________
+
                     </span>
+
 
                     <span>
+
                         <strong>Type</strong>
-                        __________________
+
+                        ____________________
+
                     </span>
 
-                    <a href="https://ieeexplore.ieee.org/abstract/document/11341086"
-                       class="publication-link"
-                       target="_blank"
-                       rel="noopener noreferrer">
-                        View Publication <span>↗</span>
+
+                    <a
+                        href="https://ieeexplore.ieee.org/abstract/document/11341086"
+                        class="publication-link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+
+                        View Publication
+
+                        <span>↗</span>
+
                     </a>
+
 
                 </div>
 
@@ -1823,15 +2174,22 @@
 
 
 
-        <!-- PUBLICATION 13 -->
+        <!-- =================================================
+             PUBLICATION 13
+        ================================================== -->
 
         <article class="publication-item">
 
+
             <div class="publication-marker">
+
                 <span>03</span>
+
             </div>
 
+
             <div class="publication-content">
+
 
                 <div class="publication-top">
 
@@ -1845,37 +2203,68 @@
 
                 </div>
 
-                <h3>Spatio-Channel Complementary Learning for Polyphonic Music Instrument Recognition</h3>
+
+                <h3>
+
+                    Spatio-Channel Complementary Learning for
+                    Polyphonic Music Instrument Recognition
+
+                </h3>
+
 
                 <p>
+
                     Add approximately three lines describing the research
                     problem, proposed methodology and the primary contribution
                     of this work.
+
                 </p>
+
 
                 <div class="publication-details">
 
+
                     <span>
+
                         <strong>Published At</strong>
+
                         IEEE
+
                     </span>
 
+
                     <span>
+
                         <strong>Venue</strong>
-                        2025 IEEE 2nd International Conference on Information Technology, Electronics and Intelligent Communication Systems (ICITEICS)
+
+                        2025 IEEE 2nd International Conference on Information Technology,
+                        Electronics and Intelligent Communication Systems (ICITEICS)
+
                     </span>
 
+
                     <span>
+
                         <strong>Type</strong>
+
                         CONFERENCE
+
                     </span>
 
-                    <a href="https://ieeexplore.ieee.org/abstract/document/11341086"
-                       class="publication-link"
-                       target="_blank"
-                       rel="noopener noreferrer">
-                        View Publication <span>↗</span>
+
+                    <a
+                        href="https://ieeexplore.ieee.org/abstract/document/11341086"
+                        class="publication-link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+
+                        View Publication
+
+                        <span>↗</span>
+
                     </a>
+
 
                 </div>
 
@@ -1885,15 +2274,22 @@
 
 
 
-        <!-- PUBLICATION 14 -->
+        <!-- =================================================
+             PUBLICATION 14
+        ================================================== -->
 
         <article class="publication-item">
 
+
             <div class="publication-marker">
+
                 <span>02</span>
+
             </div>
 
+
             <div class="publication-content">
+
 
                 <div class="publication-top">
 
@@ -1907,37 +2303,68 @@
 
                 </div>
 
-                <h3>Explainable AI for Wind Energy Systems: State-of-the-art Techniques, Challenges, and Future Directions</h3>
+
+                <h3>
+
+                    Explainable AI for Wind Energy Systems:
+                    State-of-the-art Techniques, Challenges,
+                    and Future Directions
+
+                </h3>
+
 
                 <p>
+
                     Add approximately three lines describing the research
                     problem, proposed methodology and the primary contribution
                     of this work.
+
                 </p>
+
 
                 <div class="publication-details">
 
+
                     <span>
+
                         <strong>Published At</strong>
+
                         Energy Conversion and Management: X
+
                     </span>
 
+
                     <span>
+
                         <strong>Venue</strong>
+
                         Elsevier
+
                     </span>
+
 
                     <span>
+
                         <strong>Type</strong>
+
                         JOURNAL
+
                     </span>
 
-                    <a href="https://www.sciencedirect.com/science/article/pii/S259017452500409X"
-                       class="publication-link"
-                       target="_blank"
-                       rel="noopener noreferrer">
-                        View Publication <span>↗</span>
+
+                    <a
+                        href="https://www.sciencedirect.com/science/article/pii/S259017452500409X"
+                        class="publication-link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+
+                        View Publication
+
+                        <span>↗</span>
+
                     </a>
+
 
                 </div>
 
@@ -1947,15 +2374,22 @@
 
 
 
-        <!-- PUBLICATION 15 -->
+        <!-- =================================================
+             PUBLICATION 15
+        ================================================== -->
 
         <article class="publication-item">
 
+
             <div class="publication-marker">
+
                 <span>01</span>
+
             </div>
 
+
             <div class="publication-content">
+
 
                 <div class="publication-top">
 
@@ -1969,37 +2403,68 @@
 
                 </div>
 
-                <h3>Dynamic Feature Learning with Involution and Convolution for Predominant Instrument Recognition in Polyphonic Music</h3>
+
+                <h3>
+
+                    Dynamic Feature Learning with Involution and
+                    Convolution for Predominant Instrument Recognition
+                    in Polyphonic Music
+
+                </h3>
+
 
                 <p>
+
                     Add approximately three lines describing the research
                     problem, proposed methodology and the primary contribution
                     of this work.
+
                 </p>
+
 
                 <div class="publication-details">
 
+
                     <span>
+
                         <strong>Published At</strong>
+
                         Circuits, Systems, and Signal Processing
+
                     </span>
 
+
                     <span>
+
                         <strong>Venue</strong>
-                         Springer Nature
+
+                        Springer Nature
+
                     </span>
+
 
                     <span>
+
                         <strong>Type</strong>
+
                         JOURNAL
+
                     </span>
 
-                    <a href="https://link.springer.com/article/10.1007/s00034-025-03111-y"
-                       class="publication-link"
-                       target="_blank"
-                       rel="noopener noreferrer">
-                        View Publication <span>↗</span>
+
+                    <a
+                        href="https://link.springer.com/article/10.1007/s00034-025-03111-y"
+                        class="publication-link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+
+                        View Publication
+
+                        <span>↗</span>
+
                     </a>
+
 
                 </div>
 
@@ -2023,12 +2488,14 @@
 
     <div class="section-heading">
 
-        <p>03 / RESEARCH & DEVELOPMENT</p>
+        <p>03 / RESEARCH &amp; DEVELOPMENT</p>
 
         <h2>Projects</h2>
 
         <span>
+
             Research-driven systems built around real-world problems.
+
         </span>
 
     </div>
@@ -2052,9 +2519,11 @@
             </h3>
 
             <p>
+
                 Project description will be added here,
                 including the problem, methodology and
                 major outcome.
+
             </p>
 
             <div class="project-tags">
@@ -2086,9 +2555,11 @@
             </h3>
 
             <p>
+
                 Project description will be added here,
                 including the problem, methodology and
                 major outcome.
+
             </p>
 
             <div class="project-tags">
@@ -2120,9 +2591,11 @@
             </h3>
 
             <p>
+
                 Project description will be added here,
                 including the problem, methodology and
                 major outcome.
+
             </p>
 
             <div class="project-tags">
@@ -2158,7 +2631,9 @@
         <h2>Internships</h2>
 
         <span>
+
             Research, industry and technical experiences.
+
         </span>
 
     </div>
@@ -2182,13 +2657,16 @@
                 </h3>
 
                 <p>
+
                     Organization, role, duration and major
                     responsibilities will be added here.
+
                 </p>
 
             </div>
 
         </div>
+
 
 
         <div class="timeline-item">
@@ -2206,13 +2684,16 @@
                 </h3>
 
                 <p>
+
                     Organization, role, duration and major
                     responsibilities will be added here.
+
                 </p>
 
             </div>
 
         </div>
+
 
 
         <div class="timeline-item">
@@ -2230,8 +2711,10 @@
                 </h3>
 
                 <p>
+
                     Organization, role, duration and major
                     responsibilities will be added here.
+
                 </p>
 
             </div>
@@ -2240,7 +2723,6 @@
 
 
     </div>
-
 
 </section>
 
@@ -2267,9 +2749,11 @@
             </h2>
 
             <p>
+
                 A concise overview of my education,
                 research experience, technical skills,
                 projects and achievements.
+
             </p>
 
         </div>
@@ -2289,7 +2773,6 @@
 
 
     </div>
-
 
 </section>
 
@@ -2316,9 +2799,11 @@
             </h2>
 
             <p>
+
                 Detailed academic profile covering
                 education, publications, research projects,
                 internships and achievements.
+
             </p>
 
         </div>
@@ -2339,7 +2824,6 @@
 
     </div>
 
-
 </section>
 
 
@@ -2353,17 +2837,23 @@
 
     <div class="section-heading">
 
+
         <p>
             07 / ACADEMIC REFERENCES
         </p>
+
 
         <h2>
             Recommendations
         </h2>
 
+
         <span>
+
             Perspectives from mentors, professors and collaborators.
+
         </span>
+
 
     </div>
 
@@ -2373,42 +2863,58 @@
 
         <div class="recommendation-card">
 
+
             <div class="quote-mark">
                 “
             </div>
 
+
             <p>
+
                 Recommendation or testimonial will be
                 added here.
+
             </p>
 
+
             <span>
+
                 Name · Designation · Institution
+
             </span>
+
 
         </div>
 
 
+
         <div class="recommendation-card">
+
 
             <div class="quote-mark">
                 “
             </div>
 
+
             <p>
+
                 Recommendation or testimonial will be
                 added here.
+
             </p>
 
+
             <span>
+
                 Name · Designation · Institution
+
             </span>
+
 
         </div>
 
 
     </div>
-
 
 </section>
 
@@ -2423,6 +2929,7 @@
 
 <footer>
 
+
     <div class="footer-content">
 
 
@@ -2436,7 +2943,9 @@
 
 
         <p>
+
             Artificial Intelligence · Research · Innovation
+
         </p>
 
 
@@ -2448,7 +2957,9 @@
                 target="_blank"
                 rel="noopener noreferrer"
             >
+
                 <i class="fa-brands fa-linkedin-in"></i>
+
             </a>
 
 
@@ -2457,7 +2968,9 @@
                 target="_blank"
                 rel="noopener noreferrer"
             >
+
                 <i class="fa-solid fa-graduation-cap"></i>
+
             </a>
 
 
@@ -2466,7 +2979,9 @@
                 target="_blank"
                 rel="noopener noreferrer"
             >
+
                 <i class="fa-solid fa-book-open"></i>
+
             </a>
 
 
@@ -2475,16 +2990,20 @@
                 target="_blank"
                 rel="noopener noreferrer"
             >
+
                 <i class="fa-brands fa-github"></i>
+
             </a>
 
 
             <a
-                href="https://mail.google.com/mail/?view=cm&fs=1&to=djishnuteja2006@gmail.com&su=Research%20Collaboration"
+                href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=djishnuteja2006@gmail.com&amp;su=Research%20Collaboration"
                 target="_blank"
                 rel="noopener noreferrer"
             >
+
                 <i class="fa-solid fa-envelope"></i>
+
             </a>
 
 
@@ -2492,7 +3011,9 @@
 
 
         <p class="copyright">
+
             © 2026 Jishnu Teja Dandamudi
+
         </p>
 
 
@@ -2502,9 +3023,71 @@
 
 
 
-<!-- JavaScript -->
+<!-- =====================================================
+     EXISTING JAVASCRIPT
+===================================================== -->
 
 <script src="script.js"></script>
+
+
+
+<!-- =====================================================
+     PROFILE REVEAL
+     
+     Once the profile is revealed it stays revealed.
+===================================================== -->
+
+<script>
+
+(function () {
+
+    const profile =
+        document.getElementById("profileReveal");
+
+    if (!profile) return;
+
+
+    const revealProfile = () => {
+
+        profile.classList.add("is-revealed");
+
+    };
+
+
+    /*
+     * Desktop hover
+     */
+
+    profile.addEventListener(
+        "mouseenter",
+        revealProfile
+    );
+
+
+    /*
+     * Click support
+     */
+
+    profile.addEventListener(
+        "click",
+        revealProfile
+    );
+
+
+    /*
+     * Mobile support
+     */
+
+    profile.addEventListener(
+        "touchstart",
+        revealProfile,
+        { passive: true }
+    );
+
+
+})();
+
+</script>
 
 
 </body>
