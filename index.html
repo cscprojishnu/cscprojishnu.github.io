@@ -5,72 +5,399 @@
 
     <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Jishnu Teja Dandamudi | AI Researcher</title>
 
     <meta
         name="description"
-        content="Jishnu Teja Dandamudi — AI researcher working across Artificial Intelligence, Machine Learning, Computer Vision, Explainable AI, Edge Computing, Quantum Computing and Remote Sensing."
+        content="Jishnu Teja Dandamudi — Computer Science and Artificial Intelligence researcher working across AI, Machine Learning, Deep Learning, Computer Vision, Explainable AI, Quantum Computing, Edge Computing and Remote Sensing."
     >
 
-    <meta
-        name="author"
-        content="Jishnu Teja Dandamudi"
-    >
-
-    <meta
-        name="theme-color"
-        content="#06080c"
-    >
-
-    <meta
-        name="robots"
-        content="index, follow"
-    >
-
-    <title>
-        Jishnu Teja Dandamudi | AI Researcher
-    </title>
-
-
-    <!-- =====================================================
-         FONTS
-    ====================================================== -->
+    <!-- Google Fonts -->
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
 
-    <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin
-    >
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
         rel="stylesheet"
     >
 
-
-    <!-- =====================================================
-         FONT AWESOME
-    ====================================================== -->
+    <!-- Font Awesome -->
 
     <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     >
 
+    <!-- Main CSS -->
+
+    <link rel="stylesheet" href="style.css">
+
 
     <!-- =====================================================
-         STYLESHEET
+         INDEX-ONLY HERO FIXES
+         No style.css changes required
     ====================================================== -->
 
-    <link
-        rel="stylesheet"
-        href="style.css"
-    >
+    <style>
+
+        /* =====================================================
+           HERO: THREE COLUMNS ON ONE LINE
+        ====================================================== */
+
+        .hero-grid {
+
+            display: grid !important;
+
+            grid-template-columns:
+                220px
+                minmax(0, 1fr)
+                300px !important;
+
+            align-items: center !important;
+
+            gap: clamp(28px, 4vw, 70px) !important;
+
+            width: min(1180px, calc(100% - 48px)) !important;
+
+            margin-inline: auto !important;
+
+        }
+
+
+        .hero-profile,
+        .hero-content,
+        .research-visual {
+
+            min-width: 0 !important;
+
+        }
+
+
+        .hero-profile {
+
+            align-self: center !important;
+
+        }
+
+
+        .hero-content {
+
+            align-self: center !important;
+
+        }
+
+
+        /* =====================================================
+           RESEARCH VISUAL
+        ====================================================== */
+
+        .research-visual {
+
+            position: relative !important;
+
+            width: 300px !important;
+
+            height: 300px !important;
+
+            min-height: 300px !important;
+
+            margin: 0 auto !important;
+
+            overflow: visible !important;
+
+            flex: none !important;
+
+        }
+
+
+        .research-visual .visual-glow {
+
+            position: absolute !important;
+
+            inset: 50px !important;
+
+            pointer-events: none !important;
+
+        }
+
+
+        /* =====================================================
+           RESEARCH CORE
+        ====================================================== */
+
+        .research-visual .research-core {
+
+            position: absolute !important;
+
+            left: 50% !important;
+
+            top: 50% !important;
+
+            width: 92px !important;
+
+            height: 92px !important;
+
+            transform: translate(-50%, -50%) !important;
+
+            z-index: 10 !important;
+
+        }
+
+
+        /* =====================================================
+           ORBITS
+        ====================================================== */
+
+        .research-visual .research-orbit {
+
+            position: absolute !important;
+
+            left: 50% !important;
+
+            top: 50% !important;
+
+            border-radius: 50% !important;
+
+            transform: translate(-50%, -50%) !important;
+
+            pointer-events: none !important;
+
+        }
+
+
+        .research-visual .orbit-one {
+
+            width: 150px !important;
+
+            height: 150px !important;
+
+        }
+
+
+        .research-visual .orbit-two {
+
+            width: 220px !important;
+
+            height: 220px !important;
+
+        }
+
+
+        .research-visual .orbit-three {
+
+            width: 285px !important;
+
+            height: 285px !important;
+
+        }
+
+
+        /* =====================================================
+           ORBIT NODES
+        ====================================================== */
+
+        .research-visual .orbit-node {
+
+            position: absolute !important;
+
+            width: 62px !important;
+
+            height: 62px !important;
+
+            border-radius: 50% !important;
+
+            display: flex !important;
+
+            flex-direction: column !important;
+
+            align-items: center !important;
+
+            justify-content: center !important;
+
+            text-align: center !important;
+
+            z-index: 20 !important;
+
+            transform: none !important;
+
+        }
+
+
+        /* Vision */
+
+        .research-visual .node-one {
+
+            left: 50% !important;
+
+            top: 0 !important;
+
+            transform: translateX(-50%) !important;
+
+        }
+
+
+        /* ML / DL */
+
+        .research-visual .node-two {
+
+            right: 0 !important;
+
+            top: 50% !important;
+
+            transform: translateY(-50%) !important;
+
+        }
+
+
+        /* XAI */
+
+        .research-visual .node-three {
+
+            right: 22px !important;
+
+            bottom: 8px !important;
+
+        }
+
+
+        /* Quantum */
+
+        .research-visual .node-four {
+
+            left: 22px !important;
+
+            bottom: 8px !important;
+
+        }
+
+
+        /* Edge Computing */
+
+        .research-visual .node-five {
+
+            left: 0 !important;
+
+            top: 50% !important;
+
+            transform: translateY(-50%) !important;
+
+        }
+
+
+        /* Remote Sensing */
+
+        .research-visual .node-six {
+
+            left: 50% !important;
+
+            bottom: 0 !important;
+
+            transform: translateX(-50%) !important;
+
+        }
+
+
+        /* =====================================================
+           PROFILE IMAGE REVEAL
+        ====================================================== */
+
+        .profile-reveal {
+
+            cursor: pointer !important;
+
+        }
+
+
+        .profile-reveal .profile-image {
+
+            transition:
+                filter .35s ease,
+                opacity .35s ease,
+                transform .35s ease !important;
+
+        }
+
+
+        /*
+         * Once revealed, image remains clear.
+         */
+
+        .profile-reveal.is-revealed .profile-image {
+
+            filter: none !important;
+
+            opacity: 1 !important;
+
+        }
+
+
+        /*
+         * Hide the "HOVER TO REVEAL" overlay permanently
+         * after the first reveal.
+         */
+
+        .profile-reveal.is-revealed .profile-overlay {
+
+            opacity: 0 !important;
+
+            pointer-events: none !important;
+
+        }
+
+
+        .profile-reveal.is-revealed:hover .profile-overlay {
+
+            opacity: 0 !important;
+
+        }
+
+
+        /* =====================================================
+           MOBILE
+        ====================================================== */
+
+        @media (max-width: 900px) {
+
+            .hero-grid {
+
+                grid-template-columns: 1fr !important;
+
+                width: min(680px, calc(100% - 32px)) !important;
+
+                text-align: center !important;
+
+            }
+
+
+            .hero-profile,
+            .hero-content {
+
+                width: 100% !important;
+
+            }
+
+
+            .research-visual {
+
+                margin-inline: auto !important;
+
+            }
+
+
+            .social-links,
+            .hero-buttons {
+
+                justify-content: center !important;
+
+            }
+
+        }
+
+    </style>
 
 </head>
 
@@ -79,126 +406,50 @@
 
 
 <!-- =====================================================
-     PAGE LOADER
-====================================================== -->
-
-<div
-    class="page-loader"
-    id="pageLoader"
-    aria-hidden="true"
->
-
-    <div class="loader-inner">
-
-        <span>JT</span>
-
-        <div class="loader-line"></div>
-
-    </div>
-
-</div>
-
-
-
-<!-- =====================================================
-     SCROLL PROGRESS
-====================================================== -->
-
-<div
-    class="scroll-progress"
-    id="scrollProgress"
-></div>
-
-
-
-<!-- =====================================================
      NAVIGATION
-====================================================== -->
+===================================================== -->
 
 <header class="navbar">
 
     <div class="nav-container">
 
-
-        <a
-            href="#about"
-            class="logo"
-            aria-label="Jishnu Teja Dandamudi home"
-        >
+        <a href="#about" class="logo">
 
             DJT<span>.</span>
 
         </a>
 
 
-        <nav
-            class="nav-links"
-            id="navLinks"
-            aria-label="Primary navigation"
-        >
+        <nav class="nav-links" id="navLinks">
 
-            <a
-                href="#about"
-                class="active"
-            >
-                About
-            </a>
+            <a href="#about">About</a>
 
-            <a href="#education">
-                Education
-            </a>
+            <a href="#education">Education</a>
 
-            <a href="#research">
-                Research
-            </a>
+            <a href="#publications">Publications</a>
 
-            <a href="#publications">
-                Publications
-            </a>
+            <a href="#projects">Projects</a>
 
-            <a href="#projects">
-                Projects
-            </a>
+            <a href="#internships">Internships</a>
 
-            <a href="#experience">
-                Experience
-            </a>
+            <a href="#resume">Resume</a>
 
-            <a href="#contact">
-                Contact
-            </a>
+            <a href="#cv">CV</a>
+
+            <a href="#recommendations">Recommendations</a>
 
         </nav>
 
 
-        <div class="nav-actions">
+        <button
+            class="menu-toggle"
+            id="menuToggle"
+            aria-label="Open navigation menu"
+        >
 
-            <button
-                class="theme-toggle"
-                id="themeToggle"
-                type="button"
-                aria-label="Toggle theme"
-                title="Toggle theme"
-            >
+            <i class="fa-solid fa-bars"></i>
 
-                <i class="fa-solid fa-sun"></i>
-
-            </button>
-
-
-            <button
-                class="menu-toggle"
-                id="menuToggle"
-                type="button"
-                aria-label="Open navigation menu"
-                aria-expanded="false"
-            >
-
-                <i class="fa-solid fa-bars"></i>
-
-            </button>
-
-        </div>
+        </button>
 
     </div>
 
@@ -206,41 +457,25 @@
 
 
 
-<!-- =====================================================
-     MAIN
-====================================================== -->
-
 <main>
 
 
 <!-- =====================================================
-     HERO / ABOUT
-====================================================== -->
+     ABOUT / HERO
+===================================================== -->
 
-<section
-    id="about"
-    class="hero"
->
-
-    <div class="hero-background">
-
-        <div class="grid-background"></div>
-
-        <div class="hero-glow hero-glow-one"></div>
-
-        <div class="hero-glow hero-glow-two"></div>
-
-    </div>
+<section id="about" class="hero">
 
 
     <div class="hero-grid">
 
 
         <!-- =================================================
-             PROFILE
+             PROFILE IMAGE
         ================================================== -->
 
-        <div class="hero-profile reveal">
+        <div class="hero-profile">
+
 
             <div
                 class="profile-reveal"
@@ -249,10 +484,10 @@
 
                 <img
                     src="images/profile.JPG"
-                    alt="Portrait of Jishnu Teja Dandamudi"
+                    alt="Jishnu Teja Dandamudi"
                     class="profile-image"
-                    loading="eager"
                 >
+
 
                 <div class="profile-overlay">
 
@@ -271,13 +506,9 @@
 
             <div class="profile-caption">
 
-                <span>
-                    RESEARCHER
-                </span>
+                <span>RESEARCHER</span>
 
-                <span>
-                    AI · CS · DATA
-                </span>
+                <span>AI • CS • DATA</span>
 
             </div>
 
@@ -286,10 +517,11 @@
 
 
         <!-- =================================================
-             HERO CONTENT
+             MAIN INTRODUCTION
         ================================================== -->
 
-        <div class="hero-content reveal">
+        <div class="hero-content">
+
 
             <div class="availability">
 
@@ -319,9 +551,7 @@
 
                 Jishnu Teja
 
-                <span>
-                    Dandamudi
-                </span>
+                <span>Dandamudi</span>
 
             </h1>
 
@@ -331,13 +561,7 @@
                 Building intelligent systems that
 
                 <strong>
-                    <span
-                        id="typingText"
-                        class="typing-text"
-                    >
-                        see
-                    </span>,
-                    reason, explain and act.
+                    see, reason, explain and act.
                 </strong>
 
             </div>
@@ -356,28 +580,33 @@
             </p>
 
 
+            <p class="hero-description">
+
+                Currently pursuing a
+                <strong>dual-degree academic path</strong>,
+                I work at the intersection of Computer Science,
+                Artificial Intelligence and Data Science, with a
+                strong focus on research and practical intelligent systems.
+
+            </p>
+
+
             <p class="hero-description secondary-description">
 
-                My work spans
-
+                My research interests span
                 <strong>Artificial Intelligence</strong>,
-
                 <strong>Machine Learning</strong>,
-
                 <strong>Deep Learning</strong>,
-
                 <strong>Computer Vision</strong>,
-
                 <strong>Explainable AI</strong>,
-
                 <strong>Quantum Computing</strong>,
-
                 <strong>Edge Computing</strong> and
-
                 <strong>Remote Sensing</strong>.
 
             </p>
 
+
+            <!-- SOCIAL LINKS -->
 
             <div class="social-links">
 
@@ -392,9 +621,7 @@
 
                     <i class="fa-brands fa-linkedin-in"></i>
 
-                    <span>
-                        LinkedIn
-                    </span>
+                    <span>LinkedIn</span>
 
                 </a>
 
@@ -409,9 +636,7 @@
 
                     <i class="fa-solid fa-graduation-cap"></i>
 
-                    <span>
-                        Scholar
-                    </span>
+                    <span>Scholar</span>
 
                 </a>
 
@@ -426,9 +651,7 @@
 
                     <i class="fa-solid fa-book-open"></i>
 
-                    <span>
-                        Scopus
-                    </span>
+                    <span>Scopus</span>
 
                 </a>
 
@@ -443,24 +666,37 @@
 
                     <i class="fa-brands fa-github"></i>
 
-                    <span>
-                        GitHub
-                    </span>
+                    <span>GitHub</span>
+
+                </a>
+
+
+                <a
+                    href="mailto:djishnuteja2006@gmail.com?subject=Research%20Collaboration"
+                    class="social-link"
+                    aria-label="Email"
+                >
+
+                    <i class="fa-solid fa-envelope"></i>
+
+                    <span>Email</span>
 
                 </a>
 
             </div>
 
 
+            <!-- BUTTONS -->
+
             <div class="hero-buttons">
 
 
                 <a
-                    href="#research"
+                    href="#publications"
                     class="btn primary-btn"
                 >
 
-                    Explore Research
+                    Explore My Research
 
                     <i class="fa-solid fa-arrow-down"></i>
 
@@ -468,26 +704,13 @@
 
 
                 <a
-                    href="documents/Jishnu_Teja_Dandamudi_Resume.pdf"
+                    href="#education"
                     class="btn secondary-btn"
-                    download
                 >
 
-                    Resume
+                    Academic Journey
 
-                    <i class="fa-solid fa-download"></i>
-
-                </a>
-
-
-                <a
-                    href="#contact"
-                    class="btn ghost-btn"
-                >
-
-                    Contact
-
-                    <i class="fa-regular fa-envelope"></i>
+                    <i class="fa-solid fa-arrow-right"></i>
 
                 </a>
 
@@ -502,9 +725,10 @@
         ================================================== -->
 
         <div
-            class="research-visual reveal"
-            aria-label="Research areas visualization"
+            class="research-visual"
+            aria-label="Research areas"
         >
+
 
             <div class="visual-glow"></div>
 
@@ -516,82 +740,72 @@
             <div class="research-orbit orbit-three"></div>
 
 
+            <!-- CENTER -->
+
             <div class="research-core">
 
-                <span>
-                    AI
-                </span>
+                <span>AI</span>
 
             </div>
 
+
+            <!-- VISION -->
 
             <div class="orbit-node node-one">
 
                 <i class="fa-solid fa-eye"></i>
 
-                <span>
-                    Vision
-                </span>
+                <span>Vision</span>
 
             </div>
 
+
+            <!-- ML / DL -->
 
             <div class="orbit-node node-two">
 
-                <i class="fa-solid fa-brain"></i>
+                <i class="fa-solid fa-network-wired"></i>
 
-                <span>
-                    ML / DL
-                </span>
+                <span>ML / DL</span>
 
             </div>
 
+
+            <!-- XAI -->
 
             <div class="orbit-node node-three">
 
-                <i class="fa-solid fa-lightbulb"></i>
+                <i class="fa-solid fa-brain"></i>
 
-                <span>
-                    XAI
-                </span>
+                <span>XAI</span>
 
             </div>
 
+
+            <!-- QUANTUM -->
 
             <div class="orbit-node node-four">
 
                 <i class="fa-solid fa-atom"></i>
 
-                <span>
-                    Quantum
-                </span>
+                <span>Quantum</span>
 
             </div>
 
+
+            <!-- EDGE COMPUTING -->
 
             <div class="orbit-node node-five">
 
                 <i class="fa-solid fa-microchip"></i>
 
-                <span>
-                    Edge AI
-                </span>
+                <span>Edge Computing</span>
 
             </div>
 
-
-            <div class="orbit-node node-six">
-
-                <i class="fa-solid fa-satellite"></i>
-
-                <span>
-                    Remote
-                    Sensing
-                </span>
-
-            </div>
 
         </div>
+
 
     </div>
 
@@ -601,73 +815,46 @@
 
 <!-- =====================================================
      QUICK STATS
-====================================================== -->
+===================================================== -->
 
 <section class="stats-section">
 
 
-    <div class="stat reveal">
+    <div class="stat">
 
-        <strong
-            class="counter"
-            data-target="23"
-        >
-            0
-        </strong>
+        <strong>10+</strong>
 
-        <span>
-            Research Papers
-        </span>
+        <span>Research Papers</span>
 
     </div>
 
 
-    <div class="stat reveal">
+    <div class="stat">
 
-        <strong
-            class="counter"
-            data-target="12"
-        >
-            0
-        </strong>
+        <strong>12+</strong>
 
-        <span>
-            Published / Accepted
-        </span>
+        <span>Published / Accepted</span>
 
     </div>
 
 
-    <div class="stat reveal">
+    <div class="stat">
 
-        <strong
-            class="counter"
-            data-target="5"
-        >
-            0
-        </strong>
+        <strong>5+</strong>
 
-        <span>
-            Research Domains
-        </span>
+        <span>Research Projects</span>
 
     </div>
 
 
-    <div class="stat reveal">
+    <div class="stat">
 
-        <strong
-            class="counter"
-            data-target="4"
-        >
-            0
-        </strong>
+        <strong>4+</strong>
 
-        <span>
-            Research Experiences
-        </span>
+        <span>Research Experiences</span>
 
     </div>
+
 
 </section>
 
@@ -675,27 +862,19 @@
 
 <!-- =====================================================
      EDUCATION
-====================================================== -->
+===================================================== -->
 
-<section
-    id="education"
-    class="section"
->
+<section id="education" class="section">
 
-    <div class="section-heading reveal">
+    <div class="section-heading">
 
-        <p>
-            01 / ACADEMIC JOURNEY
-        </p>
+        <p>01 / ACADEMIC JOURNEY</p>
 
-        <h2>
-            Education
-        </h2>
+        <h2>Education</h2>
 
         <span>
-            Building a multidisciplinary academic foundation
-            across computer science, artificial intelligence
-            and data science.
+            Building a multidisciplinary academic foundation across
+            computer science, artificial intelligence and data science.
         </span>
 
     </div>
@@ -704,26 +883,26 @@
     <div class="education-grid">
 
 
-        <article class="education-card reveal">
+        <!-- =================================================
+             BTECH
+        ================================================== -->
+
+        <article class="education-card">
 
             <div class="education-icon">
-
                 <i class="fa-solid fa-graduation-cap"></i>
-
             </div>
 
             <span class="education-status">
-                2024 — CURRENT
+                2024 - CURRENT
             </span>
 
             <h3>
-                B.Tech in Computer Science and Engineering
-                with Artificial Intelligence
+                B.Tech in Computer Science and Engineering (with Artificial Intelligence) - AIE
             </h3>
 
             <h4>
-                Amrita Vishwa Vidyapeetham,
-                Coimbatore, Tamil Nadu
+                Amrita Vishwa Vidyapeetham, Coimbatore, Tamil Nadu
             </h4>
 
             <p>
@@ -734,37 +913,31 @@
 
             <div class="education-tags">
 
-                <span>
-                    Computer Science
-                </span>
+                <span>Computer Science</span>
 
-                <span>
-                    Artificial Intelligence
-                </span>
+                <span>Artificial Intelligence</span>
 
-                <span>
-                    Machine Learning
-                </span>
+                <span>Mathematics for AI</span>
 
-                <span>
-                    AI Research
-                </span>
+                <span>AI Research</span>
 
             </div>
 
         </article>
 
 
-        <article class="education-card reveal">
+        <!-- =================================================
+             BS DATA SCIENCE
+        ================================================== -->
+
+        <article class="education-card">
 
             <div class="education-icon">
-
                 <i class="fa-solid fa-chart-line"></i>
-
             </div>
 
             <span class="education-status">
-                2024 — CURRENT
+                2024 - CURRENT
             </span>
 
             <h3>
@@ -783,33 +956,29 @@
 
             <div class="education-tags">
 
-                <span>
-                    Data Science
-                </span>
+                <span>Data Science</span>
 
-                <span>
-                    Statistics
-                </span>
+                <span>Statistics</span>
 
-                <span>
-                    Machine Learning
-                </span>
+                <span>Machine Learning</span>
 
             </div>
 
         </article>
 
 
-        <article class="education-card reveal">
+        <!-- =================================================
+             CLASS 12
+        ================================================== -->
+
+        <article class="education-card">
 
             <div class="education-icon">
-
                 <i class="fa-solid fa-school"></i>
-
             </div>
 
             <span class="education-status">
-                COMPLETED — 2024
+                COMPLETED - 2024
             </span>
 
             <h3>
@@ -817,35 +986,30 @@
             </h3>
 
             <h4>
-                JAYANTHI PUBLIC SENIOR SECONDARY SCHOOL,
-                TIRUPUR, TAMIL NADU
+                JAYANTHI PUBLIC SENIOR SECONDARY SCHOOL, TIRUPUR, TAMIL NADU
             </h4>
 
             <div class="education-tags">
 
-                <span>
-                    Class 12
-                </span>
+                <span>Class 12</span>
 
-                <span>
-                    Computer Science
-                </span>
+                <span>Computer Science</span>
 
-                <span>
-                    PCM
-                </span>
+                <span>PCM</span>
 
             </div>
 
         </article>
 
 
-        <article class="education-card reveal">
+        <!-- =================================================
+             CLASS 10
+        ================================================== -->
+
+        <article class="education-card">
 
             <div class="education-icon">
-
                 <i class="fa-solid fa-book-open"></i>
-
             </div>
 
             <span class="education-status">
@@ -857,295 +1021,31 @@
             </h3>
 
             <h4>
-                DAV BOYS SENIOR SECONDARY SCHOOL,
-                CHENNAI, TAMIL NADU
+                DAV BOYS SENIOR SECONDARY SCHOOL, CHENNAI, TAMIL NADU
             </h4>
 
+
         </article>
+
 
     </div>
 
 
-    <div class="dual-degree-note reveal">
+    <!-- =================================================
+         DUAL DEGREE NOTE
+    ================================================== -->
+
+    <div class="dual-degree-note">
 
         <i class="fa-solid fa-code-branch"></i>
 
         <span>
 
-            <strong>
-                Dual-degree academic path:
-            </strong>
-
+            <strong>Dual-degree academic path:</strong>
             combining Artificial Intelligence and Computer Science
-            with Data Science to build a multidisciplinary
-            research foundation.
+            with Data Science to build a multidisciplinary research foundation.
 
         </span>
-
-    </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     RESEARCH
-====================================================== -->
-
-<section
-    id="research"
-    class="section dark-panel"
->
-
-    <div class="section-heading reveal">
-
-        <p>
-            02 / RESEARCH
-        </p>
-
-        <h2>
-            Research Directions
-        </h2>
-
-        <span>
-            Research interests connecting intelligent algorithms
-            with practical, explainable and deployable systems.
-        </span>
-
-    </div>
-
-
-    <div class="research-grid">
-
-
-        <article class="research-card reveal">
-
-            <div class="research-card-number">
-                01
-            </div>
-
-            <div class="research-card-icon">
-                <i class="fa-solid fa-brain"></i>
-            </div>
-
-            <h3>
-                Artificial Intelligence
-            </h3>
-
-            <p>
-                Machine learning and deep learning systems designed
-                to learn meaningful patterns and solve complex
-                real-world problems.
-            </p>
-
-            <div class="research-tags">
-
-                <span>
-                    ML
-                </span>
-
-                <span>
-                    DL
-                </span>
-
-                <span>
-                    PyTorch
-                </span>
-
-            </div>
-
-        </article>
-
-
-        <article class="research-card reveal">
-
-            <div class="research-card-number">
-                02
-            </div>
-
-            <div class="research-card-icon">
-                <i class="fa-solid fa-eye"></i>
-            </div>
-
-            <h3>
-                Computer Vision
-            </h3>
-
-            <p>
-                Visual intelligence for object detection, satellite
-                imagery, surveillance video and environmental
-                understanding.
-            </p>
-
-            <div class="research-tags">
-
-                <span>
-                    YOLO
-                </span>
-
-                <span>
-                    CLIP
-                </span>
-
-                <span>
-                    Vision
-                </span>
-
-            </div>
-
-        </article>
-
-
-        <article class="research-card reveal">
-
-            <div class="research-card-number">
-                03
-            </div>
-
-            <div class="research-card-icon">
-                <i class="fa-solid fa-lightbulb"></i>
-            </div>
-
-            <h3>
-                Explainable AI
-            </h3>
-
-            <p>
-                Building intelligent systems whose decisions can be
-                interpreted, analyzed and communicated to humans.
-            </p>
-
-            <div class="research-tags">
-
-                <span>
-                    SHAP
-                </span>
-
-                <span>
-                    LIME
-                </span>
-
-                <span>
-                    XAI
-                </span>
-
-            </div>
-
-        </article>
-
-
-        <article class="research-card reveal">
-
-            <div class="research-card-number">
-                04
-            </div>
-
-            <div class="research-card-icon">
-                <i class="fa-solid fa-microchip"></i>
-            </div>
-
-            <h3>
-                Edge AI
-            </h3>
-
-            <p>
-                Efficient AI models designed for resource-constrained
-                edge devices, real-time inference and practical deployment.
-            </p>
-
-            <div class="research-tags">
-
-                <span>
-                    Jetson
-                </span>
-
-                <span>
-                    ONNX
-                </span>
-
-                <span>
-                    Optimization
-                </span>
-
-            </div>
-
-        </article>
-
-
-        <article class="research-card reveal">
-
-            <div class="research-card-number">
-                05
-            </div>
-
-            <div class="research-card-icon">
-                <i class="fa-solid fa-atom"></i>
-            </div>
-
-            <h3>
-                Quantum Computing
-            </h3>
-
-            <p>
-                Exploring quantum computing, quantum machine learning
-                and emerging computational paradigms for intelligent systems.
-            </p>
-
-            <div class="research-tags">
-
-                <span>
-                    QML
-                </span>
-
-                <span>
-                    Quantum
-                </span>
-
-                <span>
-                    Optimization
-                </span>
-
-            </div>
-
-        </article>
-
-
-        <article class="research-card reveal">
-
-            <div class="research-card-number">
-                06
-            </div>
-
-            <div class="research-card-icon">
-                <i class="fa-solid fa-satellite"></i>
-            </div>
-
-            <h3>
-                Remote Sensing
-            </h3>
-
-            <p>
-                AI-driven analysis of satellite and remote sensing
-                imagery for land cover, environmental and security applications.
-            </p>
-
-            <div class="research-tags">
-
-                <span>
-                    Satellite
-                </span>
-
-                <span>
-                    Land Cover
-                </span>
-
-                <span>
-                    Earth Observation
-                </span>
-
-            </div>
-
-        </article>
 
     </div>
 
@@ -1155,95 +1055,41 @@
 
 <!-- =====================================================
      PUBLICATIONS
-====================================================== -->
+===================================================== -->
 
-<section
-    id="publications"
-    class="section"
->
+<section id="publications" class="section dark-panel">
 
-    <div class="section-heading reveal">
 
-        <p>
-            03 / RESEARCH OUTPUT
-        </p>
+    <div class="section-heading">
 
-        <h2>
-            Publications
-        </h2>
+        <p>02 / RESEARCH OUTPUT</p>
+
+        <h2>Publications</h2>
 
         <span>
-            Selected research contributions, scholarly publications
-            and ongoing academic work.
+
+            Research contributions, scholarly publications and ongoing work.
+
         </span>
-
-    </div>
-
-
-    <div class="publication-controls reveal">
-
-        <div class="publication-search">
-
-            <i class="fa-solid fa-magnifying-glass"></i>
-
-            <input
-                type="search"
-                id="publicationSearch"
-                placeholder="Search publications..."
-                aria-label="Search publications"
-            >
-
-        </div>
-
-
-        <div class="publication-filter">
-
-            <button
-                class="pub-filter active"
-                data-filter="all"
-                type="button"
-            >
-                All
-            </button>
-
-            <button
-                class="pub-filter"
-                data-filter="2026"
-                type="button"
-            >
-                2026
-            </button>
-
-            <button
-                class="pub-filter"
-                data-filter="2025"
-                type="button"
-            >
-                2025
-            </button>
-
-        </div>
 
     </div>
 
 
     <div class="publication-timeline">
 
+        <!-- PUBLICATION 06 -->
 
-        <article
-            class="publication-item reveal"
-            data-year="2026"
-            data-search="Neuro-Symbolic Explainable AI Anomaly Detection Satellite IoT Cyber Physical Systems"
-        >
+        <article class="publication-item">
 
             <div class="publication-marker">
-                <span>
-                    12
-                </span>
+
+                <span>12</span>
+
             </div>
 
 
             <div class="publication-content">
+
 
                 <div class="publication-top">
 
@@ -1259,39 +1105,174 @@
 
 
                 <h3>
-                    Neuro-Symbolic Explainable AI for Anomaly Detection
-                    in Satellite-IoT Cyber-Physical Systems
+                    Neuro-Symbolic Explainable AI for Anomaly Detection in Satellite-IoT Cyber-Physical Systems
                 </h3>
 
 
                 <p>
-                    Research work combining intelligent anomaly detection
-                    with explainability and neuro-symbolic reasoning
-                    for satellite-connected cyber-physical systems.
+
+                    Add approximately three lines describing the research
+                    problem, proposed methodology and the primary contribution
+                    of this work.
+
+                </p>
+
+                <p>
+                    Jishnu Teja Dandamudi, Yogendra Chhetri
                 </p>
 
 
                 <div class="publication-details">
 
-                    <span>
-
-                        <strong>
-                            Area
-                        </strong>
-
-                        Explainable AI
-
-                    </span>
 
                     <span>
 
-                        <strong>
-                            Type
-                        </strong>
+                        <strong>Published At</strong>
 
-                        Research Publication
+                        IEEE
 
                     </span>
+
+
+                    <span>
+
+                        <strong>Venue</strong>
+
+                        2026 IEEE Global Symposium on Emerging and Communication Technologies (GSEACT)
+
+                    </span>
+
+
+                    <span>
+
+                        <strong>Type</strong>
+
+                        CONFERENCE
+
+                    </span>
+
+
+                    <a
+                        href="https://ieeexplore.ieee.org/abstract/document/11620047"
+                        class="publication-link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+
+                        View Publication
+
+                        <span>↗</span>
+
+                    </a>
+
+                    <a
+                        href="https://github.com/cscprojishnu/Neuro-Symbolic-Explainable-AI-for-Cyber-Physical-Satellite-IoT-Systems"
+                        class="publication-link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+
+                        Github Repository
+
+                        <span>↗</span>
+
+                    </a>
+
+
+                </div>
+
+            </div>
+
+        </article>
+
+        <!-- PUBLICATION 06 -->
+
+        <article class="publication-item">
+
+            <div class="publication-marker">
+
+                <span>11</span>
+
+            </div>
+
+
+            <div class="publication-content">
+
+
+                <div class="publication-top">
+
+                    <span class="publication-year">
+                        2026
+                    </span>
+
+                    <span class="publication-status">
+                        PUBLISHED
+                    </span>
+
+                </div>
+
+
+                <h3>
+                    Explainable AI for Smart Grid Intelligence: A Comprehensive Review of Techniques, Applications and Future Directions
+                </h3>
+
+
+                <p>
+
+                    Add approximately three lines describing the research
+                    problem, proposed methodology and the primary contribution
+                    of this work.
+
+                </p>
+
+                <p>
+                    Rupa Kandula, Jishnu Teja Dandamudi, Rayappa David Amar Raj, Rama Muni Reddy Yanamala, K. Krishna Prakasha
+                </p>
+
+
+                <div class="publication-details">
+
+
+                    <span>
+
+                        <strong>Published At</strong>
+
+                        Elsevier
+
+                    </span>
+
+
+                    <span>
+
+                        <strong>Venue</strong>
+
+                        Energy and AI
+
+                    </span>
+
+
+                    <span>
+
+                        <strong>Type</strong>
+
+                        JOURNAL
+
+                    </span>
+
+
+                    <a
+                        href="https://www.sciencedirect.com/science/article/pii/S2666546826001461"
+                        class="publication-link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+
+                        View Publication
+
+                        <span>↗</span>
+
+                    </a>
+
 
                 </div>
 
@@ -1301,20 +1282,867 @@
 
 
 
-        <article
-            class="publication-item reveal"
-            data-year="2025"
-            data-search="Predominant Music Springer Signal Processing"
-        >
+        <!-- PUBLICATION 07 -->
+
+        <article class="publication-item">
 
             <div class="publication-marker">
-                <span>
-                    11
-                </span>
+
+                <span>10</span>
+
             </div>
 
 
             <div class="publication-content">
+
+
+                <div class="publication-top">
+
+                    <span class="publication-year">
+                        2026
+                    </span>
+
+                    <span class="publication-status">
+                        PUBLISHED
+                    </span>
+
+                </div>
+
+
+                <h3>
+                    Deep Reinforcement Learning for Wireless Networks: Architectures, Algorithms, and Emerging Applications
+                </h3>
+
+
+                <p>
+
+                    Add approximately three lines describing the research
+                    problem, proposed methodology and the primary contribution
+                    of this work.
+
+                </p>
+
+                <p>
+                    Jishnu Teja Dandamudi, Rupa Kandula, Rayappa David, Amar Raj, Rama Muni, Reddy Yanamala, Christian Napoli, Cristian Randieri
+                </p>
+
+
+                <div class="publication-details">
+
+
+                    <span>
+
+                        <strong>Published At</strong>
+
+                        CRC Press, Taylor & Francis, UK
+
+                    </span>
+
+
+                    <span>
+
+                        <strong>Venue</strong>
+
+                        Handbook of AI in Wireless Networks: Foundations, Techniques, and Emerging Applications
+
+                    </span>
+
+
+                    <span>
+
+                        <strong>Type</strong>
+
+                        BOOK CHAPTER
+
+                    </span>
+
+
+                    <a
+                        href="https://www.taylorfrancis.com/chapters/edit/10.1201/9781003667766-2/deep-reinforcement-learning-wireless-networks-jishnu-teja-dandamudi-rupa-kandula-rayappa-david-amar-raj-rama-muni-reddy-yanamala-christian-napoli-cristian-randieri"
+                        class="publication-link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+
+                        View Publication
+
+                        <span>↗</span>
+
+                    </a>
+
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+
+        <!-- PUBLICATION 08 -->
+
+        <article class="publication-item">
+
+            <div class="publication-marker">
+
+                <span>09</span>
+
+            </div>
+
+
+            <div class="publication-content">
+
+
+                <div class="publication-top">
+
+                    <span class="publication-year">
+                        2026
+                    </span>
+
+                    <span class="publication-status">
+                        PUBLISHED
+                    </span>
+
+                </div>
+
+
+                <h3>
+                    Artificial Intelligence-empowered 6G Wireless Networks: Architectures, Techniques, and Future Directions
+                </h3>
+
+
+                <p>
+
+                    Add approximately three lines describing the research
+                    problem, proposed methodology and the primary contribution
+                    of this work.
+
+                </p>
+
+                <p>
+                    Rupa Kandula, Jishnu Teja Dandamudi, Rayappa David, Amar Raj, Rama Muni, Reddy Yanamala, Christian Napoli, Cristian Randieri
+                </p>
+
+
+                <div class="publication-details">
+
+
+                    <span>
+
+                        <strong>Published At</strong>
+
+                        CRC Press, Taylor & Francis, UK
+
+                    </span>
+
+
+                    <span>
+
+                        <strong>Venue</strong>
+
+                        Handbook of AI in Wireless Networks: Foundations, Techniques, and Emerging Applications
+
+                    </span>
+
+
+                    <span>
+
+                        <strong>Type</strong>
+
+                        BOOK CHAPTER
+
+                    </span>
+
+
+                    <a
+                        href="https://www.taylorfrancis.com/chapters/edit/10.1201/9781003667766-1/artificial-intelligence-empowered-6g-wireless-networks-rupa-kandula-jishnu-teja-dandamudi-rayappa-david-amar-raj-rama-muni-reddy-yanamala-christian-napoli-cristian-randieri"
+                        class="publication-link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+
+                        View Publication
+
+                        <span>↗</span>
+
+                    </a>
+
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- PUBLICATION 09 -->
+
+        <article class="publication-item">
+
+            <div class="publication-marker">
+
+                <span>08</span>
+
+            </div>
+
+
+            <div class="publication-content">
+
+
+                <div class="publication-top">
+
+                    <span class="publication-year">
+                        2026
+                    </span>
+
+                    <span class="publication-status">
+                        PUBLISHED
+                    </span>
+
+                </div>
+
+
+                <h3>
+                    Principles and innovations in sustainable wireless communication systems for environmental efficiency
+                </h3>
+
+
+                <p>
+
+                    Add approximately three lines describing the research
+                    problem, proposed methodology and the primary contribution
+                    of this work.
+
+                </p>
+
+                <p>
+                    Rupa Kandula, Jishnu Teja Dandamudi, Rayappa David, Amar Raj, Rama Muni, Reddy Yanamala, Christian Napoli, Cristian Randieri
+                </p>
+
+
+                <div class="publication-details">
+
+
+                    <span>
+
+                        <strong>Published At</strong>
+
+                        CRC Press, Taylor & Francis, UK
+
+                    </span>
+
+
+                    <span>
+
+                        <strong>Venue</strong>
+
+                        Handbook of Sustainable Wireless Communication Systems: Innovations and Applications
+
+                    </span>
+
+
+                    <span>
+
+                        <strong>Type</strong>
+
+                        BOOK CHAPTER
+
+                    </span>
+
+
+                    <a
+                        href="https://www.taylorfrancis.com/chapters/edit/10.1201/9781003641605-1/principles-innovations-sustainable-wireless-communication-systems-environmental-efficiency-rupa-kandula-jishnu-teja-dandamudi-rayappa-david-amar-raj-rama-muni-reddy-yanamala-christian-napoli-cristian-randieri"
+                        class="publication-link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+
+                        View Publication
+
+                        <span>↗</span>
+
+                    </a>
+
+
+                </div>
+
+            </div>
+
+        </article>
+
+        
+        <!-- PUBLICATION 09 -->
+
+        <article class="publication-item">
+
+            <div class="publication-marker">
+
+                <span>07</span>
+
+            </div>
+
+
+            <div class="publication-content">
+
+
+                <div class="publication-top">
+
+                    <span class="publication-year">
+                        2026
+                    </span>
+
+                    <span class="publication-status">
+                        PUBLISHED
+                    </span>
+
+                </div>
+
+
+                <h3>
+                    Artificial intelligence for sustainable wireless network management: Models, strategies, and optimization
+                </h3>
+
+
+                <p>
+
+                    Add approximately three lines describing the research
+                    problem, proposed methodology and the primary contribution
+                    of this work.
+
+                </p>
+
+                <p>
+                    Jishnu Teja Dandamudi, Rupa Kandula, Rayappa David Amar Raj, Rama Muni Reddy Yanamala, Christian Napoli, Cristian Randieri
+                </p>
+
+
+                <div class="publication-details">
+
+
+                    <span>
+
+                        <strong>Published At</strong>
+
+                        CRC Press, Taylor & Francis, UK
+
+                    </span>
+
+
+                    <span>
+
+                        <strong>Venue</strong>
+
+                        Handbook of Sustainable Wireless Communication Systems: Innovations and Applications
+
+                    </span>
+
+
+                    <span>
+
+                        <strong>Type</strong>
+
+                        BOOK CHAPTER
+
+                    </span>
+
+
+                    <a
+                        href="https://www.taylorfrancis.com/chapters/edit/10.1201/9781003641605-7/artificial-intelligence-sustainable-wireless-network-management-jishnu-teja-dandamudi-rupa-kandula-rayappa-david-amar-raj-rama-muni-reddy-yanamala-christian-napoli-cristian-randieri"
+                        class="publication-link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+
+                        View Publication
+
+                        <span>↗</span>
+
+                    </a>
+
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+
+        <!-- PUBLICATION 10 -->
+
+        <article class="publication-item">
+
+            <div class="publication-marker">
+
+                <span>06</span>
+
+            </div>
+
+
+            <div class="publication-content">
+
+
+                <div class="publication-top">
+
+                    <span class="publication-year">
+                        2026
+                    </span>
+
+                    <span class="publication-status">
+                        PUBLISHED
+                    </span>
+
+                </div>
+
+
+                <h3>
+                    Solar-Safe: An Edge AI - Powered Fault Detection in PhotoVoltaic Modules using Deep Learning Models
+                </h3>
+
+
+                <p>
+
+                    Add approximately three lines describing the research
+                    problem, proposed methodology and the primary contribution
+                    of this work.
+
+                </p>
+
+                <p>
+                    Jishnu Teja Dandamudi, Yogendra Chhetri, Prajeesh C B, Abhishek S
+                </p>
+
+
+                <div class="publication-details">
+
+
+                    <span>
+
+                        <strong>Published At</strong>
+
+                        IEEE
+
+                    </span>
+
+
+                    <span>
+
+                        <strong>Venue</strong>
+
+                        Proceedings of the 2026 International Conference on Intelligent and Innovative Technologies in Computing, Electrical and Electronics, IITCEE 2026
+
+                    </span>
+
+
+                    <span>
+
+                        <strong>Type</strong>
+
+                        CONFERENCE
+
+                    </span>
+
+
+                    <a
+                        href="https://ieeexplore.ieee.org/document/11394697"
+                        class="publication-link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+
+                        View Publication
+
+                        <span>↗</span>
+
+                    </a>
+
+                    <a
+                        href="https://github.com/cscprojishnu/Solar-Safe-Edge-AI-Powered-Fault-Detection-in-Photovoltaic-Modules"
+                        class="publication-link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+
+                        Github Repository
+
+                        <span>↗</span>
+
+                    </a>
+
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+
+        <!-- PUBLICATION 11 -->
+
+        <article class="publication-item">
+
+            <div class="publication-marker">
+
+                <span>05</span>
+
+            </div>
+
+
+            <div class="publication-content">
+
+
+                <div class="publication-top">
+
+                    <span class="publication-year">
+                        2026
+                    </span>
+
+                    <span class="publication-status">
+                        PUBLISHED
+                    </span>
+
+                </div>
+
+
+                <h3>
+                    Prune Smart, Train Sharp: ADMM-Powered CNN and INN Models for Image Classification
+                </h3>
+
+
+                <p>
+
+                    Add approximately three lines describing the research
+                    problem, proposed methodology and the primary contribution
+                    of this work.
+
+                </p>
+
+                <p>
+                    Jishnu Teja Dandamudi, Yogendra Chhetri
+                </p>
+
+
+                <div class="publication-details">
+
+
+                    <span>
+
+                        <strong>Published At</strong>
+
+                        IEEE
+
+                    </span>
+
+
+                    <span>
+
+                        <strong>Venue</strong>
+
+                        7th International Conference on Innovative Trends in Information Technology, ICITIIT 2026
+
+                    </span>
+
+
+                    <span>
+
+                        <strong>Type</strong>
+
+                       CONFERENCE
+
+                    </span>
+
+
+                    <a
+                        href="https://ieeexplore.ieee.org/document/11499527/"
+                        class="publication-link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+
+                        View Publication
+
+                        <span>↗</span>
+
+                    </a>
+
+                    <a
+                        href="https://github.com/cscprojishnu/ADMM-for-Sparse-Deep-Neural-Network-Pruning-USING-CNN-INN"
+                        class="publication-link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+
+                        Github Repository
+
+                        <span>↗</span>
+
+                    </a>
+
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+
+        <!-- PUBLICATION 12 -->
+
+        <article class="publication-item">
+
+            <div class="publication-marker">
+
+                <span>04</span>
+
+            </div>
+
+
+            <div class="publication-content">
+
+
+                <div class="publication-top">
+
+                    <span class="publication-year">
+                        2026
+                    </span>
+
+                    <span class="publication-status">
+                        PUBLISHED
+                    </span>
+
+                </div>
+
+
+                <h3>
+                    Voltage Stability Enhancement in Microgrids: An ANN-based droop control approach
+                </h3>
+
+
+                <p>
+
+                    Add approximately three lines describing the research
+                    problem, proposed methodology and the primary contribution
+                    of this work.
+
+                </p>
+
+                <p>
+                    Jishnu Teja Dandamudi, Rupa Kandula
+                </p>
+
+
+                <div class="publication-details">
+
+
+                    <span>
+
+                        <strong>Published At</strong>
+
+                        CRC Press, Taylor & Francis, UK
+
+                    </span>
+
+
+                    <span>
+
+                        <strong>Venue</strong>
+
+                        Proceedings of International Conference on Artificial Intelligence, Computational Intelligence, and Inclusive Technologies (ICRAIC2IT – 2025)
+
+                    </span>
+
+
+                    <span>
+
+                        <strong>Type</strong>
+
+                        CONFERENCE - Recieved 2nd Best Paper Award
+
+                    </span>
+
+
+                    <a
+                        href="https://www.taylorfrancis.com/chapters/edit/10.1201/9781003740100-94/voltage-stability-enhancement-microgrids-ann-based-droop-control-approach-jishnu-teja-dandamudi-rupa-kandula"
+                        class="publication-link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+
+                        View Publication
+
+                        <span>↗</span>
+
+                    </a>
+
+                    <a
+                        href="https://github.com/cscprojishnu/ANN-using-Droop-Control"
+                        class="publication-link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+
+                        Github Repository
+
+                        <span>↗</span>
+
+                    </a>
+
+                    <a
+                        href="https://github.com/cscprojishnu/Predominant-Music"
+                        class="publication-link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+
+                        Award Details
+
+                        <span>↗</span>
+
+                    </a>
+
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+
+        <!-- =================================================
+             PUBLICATION 13
+        ================================================== -->
+
+        <article class="publication-item">
+
+
+            <div class="publication-marker">
+
+                <span>03</span>
+
+            </div>
+
+
+            <div class="publication-content">
+
+
+                <div class="publication-top">
+
+                    <span class="publication-year">
+                        2026
+                    </span>
+
+                    <span class="publication-status">
+                        PUBLISHED
+                    </span>
+
+                </div>
+
+
+                <h3>
+
+                    Spatio-Channel Complementary Learning for Polyphonic Music Instrument Recognition
+
+                </h3>
+
+
+                <p>
+
+                    Add approximately three lines describing the research
+                    problem, proposed methodology and the primary contribution
+                    of this work.
+
+                </p>
+
+                <p>
+                    Lekshmi C.R, Jishnu Teja Dandamudi
+                </p>
+
+
+                <div class="publication-details">
+
+
+                    <span>
+
+                        <strong>Published At</strong>
+
+                        IEEE
+
+                    </span>
+
+
+                    <span>
+
+                        <strong>Venue</strong>
+
+                        2025 IEEE 2nd International Conference on Information Technology,
+                        Electronics and Intelligent Communication Systems (ICITEICS)
+
+                    </span>
+
+
+                    <span>
+
+                        <strong>Type</strong>
+
+                        CONFERENCE
+
+                    </span>
+
+
+                    <a
+                        href="https://ieeexplore.ieee.org/abstract/document/11341086"
+                        class="publication-link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+
+                        View Publication
+
+                        <span>↗</span>
+
+                    </a>
+
+                    <a
+                        href="https://github.com/cscprojishnu/Predominant-Music"
+                        class="publication-link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+
+                        Github Repository
+
+                        <span>↗</span>
+
+                    </a>
+
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+
+        <!-- =================================================
+             PUBLICATION 14
+        ================================================== -->
+
+        <article class="publication-item">
+
+
+            <div class="publication-marker">
+
+                <span>02</span>
+
+            </div>
+
+
+            <div class="publication-content">
+
 
                 <div class="publication-top">
 
@@ -1330,143 +2158,183 @@
 
 
                 <h3>
-                    Predominant Music
+
+                    Explainable AI for Wind Energy Systems: State-of-the-art Techniques, Challenges, and Future Directions
+
                 </h3>
 
 
                 <p>
-                    Research contribution in the area of music analysis,
-                    signal processing and intelligent audio systems.
+
+                    Add approximately three lines describing the research
+                    problem, proposed methodology and the primary contribution
+                    of this work.
+
+                </p>
+
+                <p>
+                    Jishnu Teja Dandamudi, Rupa Kandula, Rayappa David Amar Raj, Rama Muni Reddy Yanamala, K. Krishna Prakasha
                 </p>
 
 
                 <div class="publication-details">
 
+
                     <span>
 
-                        <strong>
-                            Venue
-                        </strong>
+                        <strong>Published At</strong>
+
+                        Elsevier
+
+                    </span>
+
+
+                    <span>
+
+                        <strong>Venue</strong>
+
+                        Energy Conversion and Management: X
+
+                    </span>
+
+
+                    <span>
+
+                        <strong>Type</strong>
+
+                        JOURNAL
+
+                    </span>
+
+
+                    <a
+                        href="https://www.sciencedirect.com/science/article/pii/S259017452500409X"
+                        class="publication-link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+
+                        View Publication
+
+                        <span>↗</span>
+
+                    </a>
+
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+
+        <!-- =================================================
+             PUBLICATION 15
+        ================================================== -->
+
+        <article class="publication-item">
+
+
+            <div class="publication-marker">
+
+                <span>01</span>
+
+            </div>
+
+
+            <div class="publication-content">
+
+
+                <div class="publication-top">
+
+                    <span class="publication-year">
+                        2025
+                    </span>
+
+                    <span class="publication-status">
+                        PUBLISHED
+                    </span>
+
+                </div>
+
+
+                <h3>
+
+                    Dynamic Feature Learning with Involution and Convolution for Predominant Instrument Recognition in Polyphonic Music
+
+                </h3>
+
+
+                <p>
+
+                    Add approximately three lines describing the research
+                    problem, proposed methodology and the primary contribution
+                    of this work.
+
+                </p>
+
+                <p>
+                    Lekshmi C.R, Jishnu Teja Dandamudi
+                </p>
+
+
+                <div class="publication-details">
+
+
+                    <span>
+
+                        <strong>Published At</strong>
+
+                        Springer Nature
+
+                    </span>
+
+
+                    <span>
+
+                        <strong>Venue</strong>
 
                         Circuits, Systems, and Signal Processing
 
                     </span>
 
+
                     <span>
 
-                        <strong>
-                            Type
-                        </strong>
+                        <strong>Type</strong>
 
-                        Journal
+                        JOURNAL
 
                     </span>
 
-                </div>
-
-
-                <div class="publication-actions">
 
                     <a
                         href="https://link.springer.com/article/10.1007/s00034-025-03111-y"
+                        class="publication-link"
                         target="_blank"
                         rel="noopener noreferrer"
-                        class="publication-link"
                     >
 
                         View Publication
 
-                        <span>
-                            ↗
-                        </span>
+                        <span>↗</span>
 
                     </a>
-
 
                     <a
                         href="https://github.com/cscprojishnu/Predominant-Music"
+                        class="publication-link"
                         target="_blank"
                         rel="noopener noreferrer"
-                        class="publication-link"
                     >
 
-                        GitHub Repository
+                        Github Repository
 
-                        <span>
-                            ↗
-                        </span>
+                        <span>↗</span>
 
                     </a>
 
-                </div>
-
-            </div>
-
-        </article>
-
-
-        <article
-            class="publication-item reveal"
-            data-year="2025"
-            data-search="Explainable AI Smart Grid Intelligence Comprehensive Review Energy and AI Elsevier"
-        >
-
-            <div class="publication-marker">
-                <span>
-                    10
-                </span>
-            </div>
-
-
-            <div class="publication-content">
-
-                <div class="publication-top">
-
-                    <span class="publication-year">
-                        2025
-                    </span>
-
-                    <span class="publication-status">
-                        PUBLISHED
-                    </span>
-
-                </div>
-
-
-                <h3>
-                    Explainable AI for Smart Grid Intelligence:
-                    A Comprehensive Review
-                </h3>
-
-
-                <p>
-                    A comprehensive review of explainable artificial
-                    intelligence methods and their applications in
-                    intelligent smart-grid systems.
-                </p>
-
-
-                <div class="publication-details">
-
-                    <span>
-
-                        <strong>
-                            Venue
-                        </strong>
-
-                        Energy and AI · Elsevier
-
-                    </span>
-
-                    <span>
-
-                        <strong>
-                            Type
-                        </strong>
-
-                        Review Article
-
-                    </span>
 
                 </div>
 
@@ -1474,21 +2342,6 @@
 
         </article>
 
-
-    </div>
-
-
-    <div
-        class="empty-state"
-        id="publicationEmpty"
-        hidden
-    >
-
-        <i class="fa-solid fa-file-circle-question"></i>
-
-        <p>
-            No publications match your search.
-        </p>
 
     </div>
 
@@ -1498,71 +2351,22 @@
 
 <!-- =====================================================
      PROJECTS
-====================================================== -->
+===================================================== -->
 
-<section
-    id="projects"
-    class="section dark-panel"
->
+<section id="projects" class="section">
 
-    <div class="section-heading reveal">
 
-        <p>
-            04 / RESEARCH &amp; DEVELOPMENT
-        </p>
+    <div class="section-heading">
 
-        <h2>
-            Projects
-        </h2>
+        <p>03 / RESEARCH &amp; DEVELOPMENT</p>
+
+        <h2>Projects</h2>
 
         <span>
+
             Research-driven systems built around real-world problems.
+
         </span>
-
-    </div>
-
-
-    <div class="project-controls reveal">
-
-        <button
-            class="project-filter active"
-            data-category="all"
-            type="button"
-        >
-            All
-        </button>
-
-        <button
-            class="project-filter"
-            data-category="vision"
-            type="button"
-        >
-            Computer Vision
-        </button>
-
-        <button
-            class="project-filter"
-            data-category="edge"
-            type="button"
-        >
-            Edge AI
-        </button>
-
-        <button
-            class="project-filter"
-            data-category="satellite"
-            type="button"
-        >
-            Satellite
-        </button>
-
-        <button
-            class="project-filter"
-            data-category="quantum"
-            type="button"
-        >
-            Quantum
-        </button>
 
     </div>
 
@@ -1570,256 +2374,112 @@
     <div class="project-grid">
 
 
-        <article
-            class="project-card reveal"
-            data-category="satellite vision"
-        >
+        <article class="project-card">
 
-            <span class="project-number">
-                01
-            </span>
+            <span class="project-number">01</span>
 
             <div class="project-icon">
+
                 <i class="fa-solid fa-satellite"></i>
+
             </div>
 
             <h3>
-                X-SatNet
+                Project Title
             </h3>
 
             <p>
-                A cross-dataset deep learning framework for unified
-                satellite land-cover classification across heterogeneous
-                remote sensing datasets.
+
+                Project description will be added here,
+                including the problem, methodology and
+                major outcome.
+
             </p>
 
             <div class="project-tags">
 
-                <span>
-                    Satellite
-                </span>
+                <span>AI</span>
 
-                <span>
-                    Deep Learning
-                </span>
+                <span>Research</span>
 
-                <span>
-                    Remote Sensing
-                </span>
+                <span>Computer Vision</span>
 
             </div>
 
         </article>
 
 
-        <article
-            class="project-card reveal"
-            data-category="edge vision"
-        >
 
-            <span class="project-number">
-                02
-            </span>
+        <article class="project-card">
+
+            <span class="project-number">02</span>
 
             <div class="project-icon">
-                <i class="fa-solid fa-solar-panel"></i>
+
+                <i class="fa-solid fa-microchip"></i>
+
             </div>
 
             <h3>
-                SOLAR-SAFE
+                Project Title
             </h3>
 
             <p>
-                AI-based photovoltaic fault detection using infrared
-                imagery with efficient deep learning architectures
-                designed for edge deployment.
+
+                Project description will be added here,
+                including the problem, methodology and
+                major outcome.
+
             </p>
 
             <div class="project-tags">
 
-                <span>
-                    Computer Vision
-                </span>
+                <span>Edge Computing</span>
 
-                <span>
-                    Edge AI
-                </span>
+                <span>PyTorch</span>
 
-                <span>
-                    PyTorch
-                </span>
+                <span>Deployment</span>
 
             </div>
 
         </article>
 
 
-        <article
-            class="project-card reveal"
-            data-category="vision"
-        >
 
-            <span class="project-number">
-                03
-            </span>
+        <article class="project-card">
+
+            <span class="project-number">03</span>
 
             <div class="project-icon">
-                <i class="fa-solid fa-video"></i>
-            </div>
 
-            <h3>
-                Surveillance Video Summarization
-            </h3>
-
-            <p>
-                A multimodal pipeline combining video enhancement,
-                object detection, temporal modeling and semantic
-                representation for surveillance video summarization.
-            </p>
-
-            <div class="project-tags">
-
-                <span>
-                    YOLOv8
-                </span>
-
-                <span>
-                    CLIP
-                </span>
-
-                <span>
-                    Transformer
-                </span>
-
-            </div>
-
-        </article>
-
-
-        <article
-            class="project-card reveal"
-            data-category="vision edge"
-        >
-
-            <span class="project-number">
-                04
-            </span>
-
-            <div class="project-icon">
-                <i class="fa-solid fa-trash-can"></i>
-            </div>
-
-            <h3>
-                MarineWasteNet
-            </h3>
-
-            <p>
-                Marine waste detection using deep learning and object
-                detection datasets for automated identification of
-                floating and marine debris.
-            </p>
-
-            <div class="project-tags">
-
-                <span>
-                    YOLO
-                </span>
-
-                <span>
-                    Detection
-                </span>
-
-                <span>
-                    Marine AI
-                </span>
-
-            </div>
-
-        </article>
-
-
-        <article
-            class="project-card reveal"
-            data-category="quantum"
-        >
-
-            <span class="project-number">
-                05
-            </span>
-
-            <div class="project-icon">
                 <i class="fa-solid fa-atom"></i>
+
             </div>
 
             <h3>
-                Quantum AI Research
+                Project Title
             </h3>
 
             <p>
-                Exploring quantum computing and quantum machine learning
-                as emerging approaches for intelligent systems and
-                optimization problems.
+
+                Project description will be added here,
+                including the problem, methodology and
+                major outcome.
+
             </p>
 
             <div class="project-tags">
 
-                <span>
-                    Quantum
-                </span>
+                <span>Quantum</span>
 
-                <span>
-                    QML
-                </span>
+                <span>QML</span>
 
-                <span>
-                    Optimization
-                </span>
+                <span>Optimization</span>
 
             </div>
 
         </article>
 
-
-        <article
-            class="project-card reveal"
-            data-category="satellite edge"
-        >
-
-            <span class="project-number">
-                06
-            </span>
-
-            <div class="project-icon">
-                <i class="fa-solid fa-shield-halved"></i>
-            </div>
-
-            <h3>
-                Secure Satellite Edge AI
-            </h3>
-
-            <p>
-                Research direction combining explainable AI,
-                post-quantum security and intelligent edge processing
-                for satellite imagery.
-            </p>
-
-            <div class="project-tags">
-
-                <span>
-                    XAI
-                </span>
-
-                <span>
-                    Post-Quantum
-                </span>
-
-                <span>
-                    Edge
-                </span>
-
-            </div>
-
-        </article>
 
     </div>
 
@@ -1828,26 +2488,22 @@
 
 
 <!-- =====================================================
-     EXPERIENCE
-====================================================== -->
+     INTERNSHIPS
+===================================================== -->
 
-<section
-    id="experience"
-    class="section"
->
+<section id="internships" class="section dark-panel">
 
-    <div class="section-heading reveal">
 
-        <p>
-            05 / EXPERIENCE
-        </p>
+    <div class="section-heading">
 
-        <h2>
-            Research Experience
-        </h2>
+        <p>04 / EXPERIENCE</p>
+
+        <h2>Internships</h2>
 
         <span>
+
             Research, industry and technical experiences.
+
         </span>
 
     </div>
@@ -1855,168 +2511,205 @@
 
     <div class="timeline">
 
-
-        <article class="timeline-item reveal">
+        <div class="timeline-item">
 
             <div class="timeline-marker"></div>
 
             <div class="timeline-content">
 
                 <span class="timeline-date">
-                    AUGUST 2026 — PRESENT
+                    August 2026 - Present
                 </span>
 
                 <h3>
                     Research Intern
                 </h3>
 
-                <p class="timeline-organization">
+                <p>
+
                     SRM University, AP
+
                 </p>
 
                 <p>
-                    Dr. Ashok Kumar Pradhan
-                    (Associate Professor)
+                    Dr Ashok Kumar Pradhan (Associate Professor)
                 </p>
 
             </div>
+            
+        </div>
 
-        </article>
-
-
-        <article class="timeline-item reveal">
+        <div class="timeline-item">
 
             <div class="timeline-marker"></div>
 
             <div class="timeline-content">
 
                 <span class="timeline-date">
-                    APRIL 2026 — PRESENT
+                    April 2026 - Present
                 </span>
 
                 <h3>
                     Research Intern
                 </h3>
 
-                <p class="timeline-organization">
-                    Indian Institute of Information Technology,
-                    Kottayam — IIITK
+                <p>
+
+                    Indian Institute of Information Technology, Kottayam - IIITK
+
                 </p>
 
                 <p>
-                    Dr. Priyadharshini S
-                    (Assistant Professor)
+                    Dr. Priyadharshini S (Assistant Professor)
                 </p>
 
             </div>
 
-        </article>
+        </div>
 
 
-        <article class="timeline-item reveal">
+
+        <div class="timeline-item">
 
             <div class="timeline-marker"></div>
 
             <div class="timeline-content">
 
                 <span class="timeline-date">
-                    JANUARY 2026 — JUNE 2026
+                    January 2026 - June 2026
                 </span>
 
                 <h3>
                     Research Intern
                 </h3>
 
-                <p class="timeline-organization">
-                    CYSTAR, Indian Institute of Technology Madras
+                <p>
+
+                    CYSTAR, Indian Institute of Technology, Madras
+
+                </p>
+
+                <p>
+                    Dr. Chester Rebeiro (Professor)
                 </p>
 
             </div>
 
-        </article>
+        </div>
 
 
-        <article class="timeline-item reveal">
+
+        <div class="timeline-item">
 
             <div class="timeline-marker"></div>
 
             <div class="timeline-content">
 
                 <span class="timeline-date">
-                    APRIL 2026 — MAY 2026
+                    May 2026 - June 2026
                 </span>
 
                 <h3>
                     Research Intern
                 </h3>
 
-                <p class="timeline-organization">
-                    Satish Dhawan Space Centre — SDSC SHAR, ISRO,
-                    Sriharikota
+                <p>
+
+                    National Remote Sensing Corporation - NRSC, ISRO, Hyderabad
+
                 </p>
 
                 <p>
-                    Dr. Madankumar Rapuru
-                    (Scientist/Engineer-SF)
+                    Dr. Subrahmanyam Kandula (Scientist - SF)
                 </p>
 
             </div>
 
-        </article>
+        </div>
 
-
-        <article class="timeline-item reveal">
+        <div class="timeline-item">
 
             <div class="timeline-marker"></div>
 
             <div class="timeline-content">
 
                 <span class="timeline-date">
-                    NOVEMBER 2025 — JANUARY 2026
+                    April 2026 - May 2026
+                </span>
+
+                <h3>
+                    Research Intern
+                </h3>
+
+                <p>
+
+                    Satish Dhawan Space Centre - SDSC SHAR, ISRO, Sriharikota
+
+                </p>
+
+                <p>
+                    Dr. Madankumar Rapuru (Scientist/Engineer-SF, CCTV/EIS/Range Operations(RO)/ISRO)
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="timeline-item">
+
+            <div class="timeline-marker"></div>
+
+            <div class="timeline-content">
+
+                <span class="timeline-date">
+                    November 2025 - January 2026
                 </span>
 
                 <h3>
                     Research Tech Intern
                 </h3>
 
-                <p class="timeline-organization">
-                    Ministry of Defence,
-                    Government of India
+                <p>
+
+                    Ministry of Defence, Government of India
+
                 </p>
 
                 <p>
-                    Yogendra Chhetri
-                    (Wing Commander, Indian Armed Forces &
-                    Joint Director of Space Operations)
+                    Yogendra Chhetri (Wing Commander, Indian Armed Forces & Joint Director of Space Operations)
                 </p>
+
 
             </div>
 
-        </article>
+        </div>
 
-
-        <article class="timeline-item reveal">
+        <div class="timeline-item">
 
             <div class="timeline-marker"></div>
 
             <div class="timeline-content">
 
                 <span class="timeline-date">
-                    MAY 2025 — JUNE 2025
+                    May 2025 - June 2025
                 </span>
 
                 <h3>
                     Tech Intern
                 </h3>
 
-                <p class="timeline-organization">
-                    NetElixir Digital Solutions Pvt. Ltd.,
-                    Hyderabad
+                <p>
+
+                    NetElixir Digital Solutions Pvt. Ltd., Hyderabad
+
                 </p>
+
 
             </div>
 
-        </article>
+        </div>
+
+
 
     </div>
 
@@ -2025,21 +2718,19 @@
 
 
 <!-- =====================================================
-     DOCUMENTS
-====================================================== -->
+     RESUME
+===================================================== -->
 
-<section class="documents-section dark-panel">
+<section id="resume" class="section">
 
 
-    <div
-        id="resume"
-        class="document-section reveal"
-    >
+    <div class="document-section">
+
 
         <div>
 
             <p class="section-label">
-                06 / PROFESSIONAL PROFILE
+                05 / PROFESSIONAL PROFILE
             </p>
 
             <h2>
@@ -2047,9 +2738,11 @@
             </h2>
 
             <p>
+
                 A concise overview of my education,
                 research experience, technical skills,
                 projects and achievements.
+
             </p>
 
         </div>
@@ -2060,25 +2753,31 @@
             class="btn primary-btn"
             download
         >
-
             Download Resume
-
             <i class="fa-solid fa-download"></i>
-
         </a>
+
 
     </div>
 
+</section>
 
-    <div
-        id="cv"
-        class="document-section reveal"
-    >
+
+
+<!-- =====================================================
+     CV
+===================================================== -->
+
+<section id="cv" class="section dark-panel">
+
+
+    <div class="document-section">
+
 
         <div>
 
             <p class="section-label">
-                07 / ACADEMIC PROFILE
+                06 / ACADEMIC PROFILE
             </p>
 
             <h2>
@@ -2086,9 +2785,11 @@
             </h2>
 
             <p>
-                Detailed academic profile covering education,
-                publications, research projects, internships
-                and achievements.
+
+                Detailed academic profile covering
+                education, publications, research projects,
+                internships and achievements.
+
             </p>
 
         </div>
@@ -2096,7 +2797,7 @@
 
         <a
             href="documents/Jishnu_Teja_Dandamudi_CV.pdf"
-            class="btn secondary-btn"
+            class="btn primary-btn"
             download
         >
 
@@ -2106,6 +2807,7 @@
 
         </a>
 
+
     </div>
 
 </section>
@@ -2113,240 +2815,94 @@
 
 
 <!-- =====================================================
-     ACHIEVEMENTS
-====================================================== -->
+     RECOMMENDATIONS
+===================================================== -->
 
-<section
-    id="achievements"
-    class="section"
->
+<section id="recommendations" class="section">
 
-    <div class="section-heading reveal">
+
+    <div class="section-heading">
+
 
         <p>
-            08 / MILESTONES
+            07 / ACADEMIC REFERENCES
         </p>
 
+
         <h2>
-            Achievements
+            Recommendations
         </h2>
 
+
         <span>
-            Selected milestones from academic, research and
-            technical activities.
+
+            Perspectives from mentors, professors and collaborators.
+
         </span>
 
-    </div>
-
-
-    <div class="achievement-grid">
-
-
-        <article class="achievement-card reveal">
-
-            <div class="achievement-icon">
-
-                <i class="fa-solid fa-trophy"></i>
-
-            </div>
-
-            <h3>
-                2nd Best Paper Award
-            </h3>
-
-            <p>
-                Recognition for research contribution and
-                technical quality.
-            </p>
-
-        </article>
-
-
-        <article class="achievement-card reveal">
-
-            <div class="achievement-icon">
-
-                <i class="fa-solid fa-code"></i>
-
-            </div>
-
-            <h3>
-                Paradox 2025
-            </h3>
-
-            <p>
-                Winner of a Python competition conducted as
-                part of IIT Madras Paradox.
-            </p>
-
-        </article>
-
-
-        <article class="achievement-card reveal">
-
-            <div class="achievement-icon">
-
-                <i class="fa-solid fa-users"></i>
-
-            </div>
-
-            <h3>
-                IEEE Computer Society
-            </h3>
-
-            <p>
-                Leadership and student chapter involvement
-                in research and technical activities.
-            </p>
-
-        </article>
-
-
-        <article class="achievement-card reveal">
-
-            <div class="achievement-icon">
-
-                <i class="fa-solid fa-file-lines"></i>
-
-            </div>
-
-            <h3>
-                Research Publications
-            </h3>
-
-            <p>
-                Authored research work across IEEE, Springer,
-                Elsevier and Taylor &amp; Francis venues.
-            </p>
-
-        </article>
 
     </div>
 
-</section>
+
+    <div class="recommendation-grid">
 
 
-
-<!-- =====================================================
-     CONTACT
-====================================================== -->
-
-<section
-    id="contact"
-    class="contact-section"
->
-
-    <div class="contact-inner">
+        <div class="recommendation-card">
 
 
-        <div class="contact-heading reveal">
+            <div class="quote-mark">
+                “
+            </div>
+
 
             <p>
-                09 / CONTACT
+
+                Recommendation or testimonial will be
+                added here.
+
             </p>
 
-            <h2>
-                Let's build something
-                <span>
-                    meaningful.
-                </span>
-            </h2>
 
-            <p>
-                I am open to research collaborations,
-                technical discussions, academic opportunities
-                and interdisciplinary projects.
-            </p>
+            <span>
+
+                Name · Designation · Institution
+
+            </span>
+
 
         </div>
 
 
-        <div class="contact-actions reveal">
+
+        <div class="recommendation-card">
 
 
-            <a
-                href="https://mail.google.com/mail/?view=cm&fs=1&to=djishnuteja2006@gmail.com&su=Research%20Collaboration"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="contact-card"
-            >
-
-                <i class="fa-solid fa-envelope"></i>
-
-                <div>
-
-                    <span>
-                        Email
-                    </span>
-
-                    <strong>
-                        djishnuteja2006@gmail.com
-                    </strong>
-
-                </div>
-
-                <i class="fa-solid fa-arrow-up-right-from-square"></i>
-
-            </a>
+            <div class="quote-mark">
+                “
+            </div>
 
 
-            <button
-                type="button"
-                class="contact-card contact-copy"
-                id="copyEmail"
-                data-email="djishnuteja2006@gmail.com"
-            >
+            <p>
 
-                <i class="fa-regular fa-copy"></i>
+                Recommendation or testimonial will be
+                added here.
 
-                <div>
-
-                    <span>
-                        Quick action
-                    </span>
-
-                    <strong>
-                        Copy email address
-                    </strong>
-
-                </div>
-
-                <i class="fa-solid fa-copy"></i>
-
-            </button>
+            </p>
 
 
-            <a
-                href="https://www.linkedin.com/in/djishnuteja/"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="contact-card"
-            >
+            <span>
 
-                <i class="fa-brands fa-linkedin-in"></i>
+                Name · Designation · Institution
 
-                <div>
+            </span>
 
-                    <span>
-                        Professional network
-                    </span>
-
-                    <strong>
-                        LinkedIn
-                    </strong>
-
-                </div>
-
-                <i class="fa-solid fa-arrow-up-right-from-square"></i>
-
-            </a>
 
         </div>
+
 
     </div>
 
 </section>
-
 
 
 </main>
@@ -2354,48 +2910,11 @@
 
 
 <!-- =====================================================
-     BACK TO TOP
-====================================================== -->
-
-<button
-    class="back-to-top"
-    id="backToTop"
-    type="button"
-    aria-label="Back to top"
->
-
-    <i class="fa-solid fa-arrow-up"></i>
-
-</button>
-
-
-
-<!-- =====================================================
-     TOAST
-====================================================== -->
-
-<div
-    class="toast"
-    id="toast"
-    role="status"
-    aria-live="polite"
->
-
-    <i class="fa-solid fa-check"></i>
-
-    <span>
-        Copied to clipboard
-    </span>
-
-</div>
-
-
-
-<!-- =====================================================
      FOOTER
-====================================================== -->
+===================================================== -->
 
 <footer>
+
 
     <div class="footer-content">
 
@@ -2404,15 +2923,15 @@
 
             JISHNU TEJA
 
-            <span>
-                DANDAMUDI
-            </span>
+            <span>DANDAMUDI</span>
 
         </div>
 
 
         <p>
+
             Artificial Intelligence · Research · Innovation
+
         </p>
 
 
@@ -2423,7 +2942,6 @@
                 href="https://www.linkedin.com/in/djishnuteja/"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="LinkedIn"
             >
 
                 <i class="fa-brands fa-linkedin-in"></i>
@@ -2435,7 +2953,6 @@
                 href="https://scholar.google.com/citations?user=AsZX5xkAAAAJ"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Google Scholar"
             >
 
                 <i class="fa-solid fa-graduation-cap"></i>
@@ -2447,7 +2964,6 @@
                 href="https://www.scopus.com/authid/detail.uri?authorId=59747668200"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Scopus"
             >
 
                 <i class="fa-solid fa-book-open"></i>
@@ -2459,7 +2975,6 @@
                 href="https://github.com/cscprojishnu"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="GitHub"
             >
 
                 <i class="fa-brands fa-github"></i>
@@ -2468,22 +2983,25 @@
 
 
             <a
-                href="https://mail.google.com/mail/?view=cm&fs=1&to=djishnuteja2006@gmail.com&su=Research%20Collaboration"
+                href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=djishnuteja2006@gmail.com&amp;su=Research%20Collaboration"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Email"
             >
 
                 <i class="fa-solid fa-envelope"></i>
 
             </a>
 
+
         </div>
 
 
         <p class="copyright">
+
             © 2026 Jishnu Teja Dandamudi
+
         </p>
+
 
     </div>
 
@@ -2492,10 +3010,70 @@
 
 
 <!-- =====================================================
-     JAVASCRIPT
-====================================================== -->
+     EXISTING JAVASCRIPT
+===================================================== -->
 
 <script src="script.js"></script>
+
+
+
+<!-- =====================================================
+     PROFILE REVEAL
+     
+     Once the profile is revealed it stays revealed.
+===================================================== -->
+
+<script>
+
+(function () {
+
+    const profile =
+        document.getElementById("profileReveal");
+
+    if (!profile) return;
+
+
+    const revealProfile = () => {
+
+        profile.classList.add("is-revealed");
+
+    };
+
+
+    /*
+     * Desktop hover
+     */
+
+    profile.addEventListener(
+        "mouseenter",
+        revealProfile
+    );
+
+
+    /*
+     * Click support
+     */
+
+    profile.addEventListener(
+        "click",
+        revealProfile
+    );
+
+
+    /*
+     * Mobile support
+     */
+
+    profile.addEventListener(
+        "touchstart",
+        revealProfile,
+        { passive: true }
+    );
+
+
+})();
+
+</script>
 
 
 </body>
