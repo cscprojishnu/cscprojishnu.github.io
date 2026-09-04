@@ -1,27 +1,102 @@
 /* =========================================================
    JISHNU TEJA DANDAMUDI
-   WEBSITE JAVASCRIPT
+   RESEARCH PORTFOLIO JAVASCRIPT
+   VERSION 2.0
 ========================================================= */
+
+"use strict";
+
+
+/* =========================================================
+   DOM READY
+========================================================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    initLoader();
+
+    initNavigation();
+
+    initScrollProgress();
+
+    initActiveNavigation();
+
+    initRevealAnimations();
+
+    initStatistics();
+
+    initPublicationFilters();
+
+    initPublicationSearch();
+
+    initResearchOrbit();
+
+    initProfileReveal();
+
+    initBackToTop();
+
+    initCopyright();
+
+});
+
+
+/* =========================================================
+   PAGE LOADER
+========================================================= */
+
+function initLoader() {
+
+    const loader =
+        document.getElementById("pageLoader");
+
+    if (!loader) return;
+
+
+    window.addEventListener("load", () => {
+
+        setTimeout(() => {
+
+            loader.classList.add("loaded");
+
+        }, 500);
+
+    });
+
+}
 
 
 /* =========================================================
    MOBILE NAVIGATION
 ========================================================= */
 
-const menuToggle = document.getElementById("menuToggle");
+function initNavigation() {
 
-const navLinks = document.getElementById("navLinks");
+    const menuToggle =
+        document.getElementById("menuToggle");
+
+    const navLinks =
+        document.getElementById("navLinks");
+
+    if (!menuToggle || !navLinks) return;
 
 
-if (menuToggle && navLinks) {
+    const icon =
+        menuToggle.querySelector("i");
 
-    menuToggle.addEventListener("click", function () {
 
-        navLinks.classList.toggle("active");
+    menuToggle.addEventListener("click", () => {
 
-        const icon = menuToggle.querySelector("i");
+        const isOpen =
+            navLinks.classList.toggle("active");
 
-        if (navLinks.classList.contains("active")) {
+
+        menuToggle.setAttribute(
+            "aria-expanded",
+            String(isOpen)
+        );
+
+
+        if (isOpen) {
 
             icon.classList.remove("fa-bars");
 
@@ -38,236 +113,711 @@ if (menuToggle && navLinks) {
     });
 
 
-    /* Close menu after clicking a navigation link */
+    navLinks
+        .querySelectorAll("a")
+        .forEach(link => {
 
-    navLinks.querySelectorAll("a").forEach(function (link) {
+            link.addEventListener(
+                "click",
+                () => {
 
-        link.addEventListener("click", function () {
+                    closeMobileNavigation();
 
-            navLinks.classList.remove("active");
-
-            const icon = menuToggle.querySelector("i");
-
-            icon.classList.remove("fa-xmark");
-
-            icon.classList.add("fa-bars");
+                }
+            );
 
         });
 
+
+    document.addEventListener(
+        "click",
+        event => {
+
+            const clickedInside =
+                navLinks.contains(event.target) ||
+                menuToggle.contains(event.target);
+
+
+            if (
+                !clickedInside &&
+                navLinks.classList.contains("active")
+            ) {
+
+                closeMobileNavigation();
+
+            }
+
+        }
+    );
+
+
+    function closeMobileNavigation() {
+
+        navLinks.classList.remove("active");
+
+        menuToggle.setAttribute(
+            "aria-expanded",
+            "false"
+        );
+
+
+        icon.classList.remove("fa-xmark");
+
+        icon.classList.add("fa-bars");
+
+    }
+
+}
+
+
+/* =========================================================
+   SCROLL PROGRESS + NAVBAR
+========================================================= */
+
+function initScrollProgress() {
+
+    const progress =
+        document.getElementById("scrollProgress");
+
+    const navbar =
+        document.getElementById("navbar");
+
+
+    function updateScrollUI() {
+
+        const scrollTop =
+            window.scrollY;
+
+
+        const documentHeight =
+            document.documentElement.scrollHeight -
+            window.innerHeight;
+
+
+        const percentage =
+            documentHeight > 0
+                ? (scrollTop / documentHeight) * 100
+                : 0;
+
+
+        if (progress) {
+
+            progress.style.width =
+                `${percentage}%`;
+
+        }
+
+
+        if (navbar) {
+
+            navbar.classList.toggle(
+                "scrolled",
+                scrollTop > 40
+            );
+
+        }
+
+    }
+
+
+    window.addEventListener(
+        "scroll",
+        updateScrollUI,
+        { passive: true }
+    );
+
+
+    updateScrollUI();
+
+}
+
+
+/* =========================================================
+   ACTIVE NAVIGATION
+========================================================= */
+
+function initActiveNavigation() {
+
+    const sections =
+        document.querySelectorAll(
+            "main section[id]"
+        );
+
+
+    const links =
+        document.querySelectorAll(
+            ".nav-links a"
+        );
+
+
+    if (!sections.length || !links.length) {
+        return;
+    }
+
+
+    const observer =
+        new IntersectionObserver(
+            entries => {
+
+                entries.forEach(entry => {
+
+                    if (!entry.isIntersecting) {
+                        return;
+                    }
+
+
+                    const id =
+                        entry.target.getAttribute("id");
+
+
+                    links.forEach(link => {
+
+                        link.classList.remove("active");
+
+
+                        if (
+                            link.getAttribute("href") ===
+                            `#${id}`
+                        ) {
+
+                            link.classList.add("active");
+
+                        }
+
+                    });
+
+                });
+
+            },
+            {
+                rootMargin:
+                    "-30% 0px -60% 0px",
+
+                threshold: 0
+            }
+        );
+
+
+    sections.forEach(section => {
+
+        observer.observe(section);
+
     });
 
 }
 
 
 /* =========================================================
-   ACTIVE NAVIGATION LINK
+   SCROLL REVEAL
 ========================================================= */
 
-const sections = document.querySelectorAll("section[id]");
+function initRevealAnimations() {
 
-const navigationLinks =
-    document.querySelectorAll(".nav-links a");
-
-
-function updateActiveNavigation() {
-
-    let currentSection = "";
-
-    sections.forEach(function (section) {
-
-        const sectionTop =
-            section.offsetTop - 150;
-
-        const sectionHeight =
-            section.offsetHeight;
-
-        if (
-            window.scrollY >= sectionTop &&
-            window.scrollY < sectionTop + sectionHeight
-        ) {
-
-            currentSection =
-                section.getAttribute("id");
-
-        }
-
-    });
+    const revealElements =
+        document.querySelectorAll(".reveal");
 
 
-    navigationLinks.forEach(function (link) {
+    if (!revealElements.length) {
+        return;
+    }
 
-        link.classList.remove("active");
 
-        const href =
-            link.getAttribute("href");
+    if (
+        window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+        ).matches
+    ) {
 
-        if (href === "#" + currentSection) {
+        revealElements.forEach(element => {
 
-            link.classList.add("active");
+            element.classList.add("visible");
 
-        }
+        });
+
+        return;
+
+    }
+
+
+    const observer =
+        new IntersectionObserver(
+            entries => {
+
+                entries.forEach(entry => {
+
+                    if (
+                        entry.isIntersecting
+                    ) {
+
+                        entry.target.classList.add(
+                            "visible"
+                        );
+
+
+                        observer.unobserve(
+                            entry.target
+                        );
+
+                    }
+
+                });
+
+            },
+            {
+                threshold: 0.12,
+
+                rootMargin:
+                    "0px 0px -40px 0px"
+            }
+        );
+
+
+    revealElements.forEach(
+        element => observer.observe(element)
+    );
+
+}
+
+
+/* =========================================================
+   STATISTICS COUNTER
+========================================================= */
+
+function initStatistics() {
+
+    const counters =
+        document.querySelectorAll(
+            ".stat-number"
+        );
+
+
+    if (!counters.length) {
+        return;
+    }
+
+
+    const animateCounter =
+        element => {
+
+            const target =
+                Number(
+                    element.dataset.target
+                );
+
+
+            if (!Number.isFinite(target)) {
+                return;
+            }
+
+
+            const duration = 1300;
+
+            const startTime =
+                performance.now();
+
+
+            function update(currentTime) {
+
+                const elapsed =
+                    currentTime -
+                    startTime;
+
+
+                const progress =
+                    Math.min(
+                        elapsed / duration,
+                        1
+                    );
+
+
+                const eased =
+                    1 -
+                    Math.pow(
+                        1 - progress,
+                        3
+                    );
+
+
+                element.textContent =
+                    Math.floor(
+                        eased * target
+                    );
+
+
+                if (progress < 1) {
+
+                    requestAnimationFrame(
+                        update
+                    );
+
+                } else {
+
+                    element.textContent =
+                        target;
+
+                }
+
+            }
+
+
+            requestAnimationFrame(update);
+
+        };
+
+
+    const observer =
+        new IntersectionObserver(
+            entries => {
+
+                entries.forEach(entry => {
+
+                    if (
+                        entry.isIntersecting
+                    ) {
+
+                        counters.forEach(
+                            animateCounter
+                        );
+
+
+                        observer.disconnect();
+
+                    }
+
+                });
+
+            },
+            {
+                threshold: 0.4
+            }
+        );
+
+
+    const statsSection =
+        document.querySelector(
+            ".stats-section"
+        );
+
+
+    if (statsSection) {
+
+        observer.observe(statsSection);
+
+    }
+
+}
+
+
+/* =========================================================
+   PUBLICATION FILTERS
+========================================================= */
+
+function initPublicationFilters() {
+
+    const filterButtons =
+        document.querySelectorAll(
+            ".filter-btn"
+        );
+
+
+    const publications =
+        document.querySelectorAll(
+            ".publication-item"
+        );
+
+
+    if (
+        !filterButtons.length ||
+        !publications.length
+    ) {
+        return;
+    }
+
+
+    filterButtons.forEach(button => {
+
+        button.addEventListener(
+            "click",
+            () => {
+
+                filterButtons.forEach(
+                    item =>
+                        item.classList.remove(
+                            "active"
+                        )
+                );
+
+
+                button.classList.add("active");
+
+
+                const filter =
+                    button.dataset.filter;
+
+
+                publications.forEach(
+                    publication => {
+
+                        const type =
+                            publication.dataset.type;
+
+
+                        const matches =
+                            filter === "all" ||
+                            type === filter;
+
+
+                        publication.classList.toggle(
+                            "hidden",
+                            !matches
+                        );
+
+                    }
+                );
+
+
+                updatePublicationEmptyState();
+
+            }
+        );
 
     });
 
 }
 
 
-window.addEventListener(
-    "scroll",
-    updateActiveNavigation
-);
-
-
-updateActiveNavigation();
-
-
-
 /* =========================================================
-   PUBLICATION ANIMATION
+   PUBLICATION SEARCH
 ========================================================= */
 
-const publicationItems =
-    document.querySelectorAll(".publication-item");
+function initPublicationSearch() {
+
+    const searchInput =
+        document.getElementById(
+            "publicationSearch"
+        );
 
 
-const observerOptions = {
+    const publications =
+        document.querySelectorAll(
+            ".publication-item"
+        );
 
-    threshold: 0.12
 
-};
+    if (
+        !searchInput ||
+        !publications.length
+    ) {
+        return;
+    }
 
 
-const publicationObserver =
-    new IntersectionObserver(
-        function (entries) {
+    searchInput.addEventListener(
+        "input",
+        () => {
 
-            entries.forEach(function (entry) {
+            const query =
+                searchInput.value
+                    .trim()
+                    .toLowerCase();
 
-                if (entry.isIntersecting) {
 
-                    entry.target.classList.add(
-                        "publication-visible"
+            const activeFilter =
+                document.querySelector(
+                    ".filter-btn.active"
+                );
+
+
+            const filter =
+                activeFilter
+                    ? activeFilter.dataset.filter
+                    : "all";
+
+
+            publications.forEach(
+                publication => {
+
+                    const text =
+                        (
+                            publication.dataset.search ||
+                            publication.textContent
+                        ).toLowerCase();
+
+
+                    const type =
+                        publication.dataset.type;
+
+
+                    const matchesSearch =
+                        !query ||
+                        text.includes(query);
+
+
+                    const matchesFilter =
+                        filter === "all" ||
+                        type === filter;
+
+
+                    publication.classList.toggle(
+                        "hidden",
+                        !(
+                            matchesSearch &&
+                            matchesFilter
+                        )
                     );
 
                 }
-
-            });
-
-        },
-        observerOptions
-    );
+            );
 
 
-publicationItems.forEach(function (item) {
+            updatePublicationEmptyState();
 
-    publicationObserver.observe(item);
-
-});
-
-
-
-/* =========================================================
-   TIMELINE ANIMATION
-========================================================= */
-
-const timelineItems =
-    document.querySelectorAll(".timeline-item");
-
-
-const timelineObserver =
-    new IntersectionObserver(
-        function (entries) {
-
-            entries.forEach(function (entry) {
-
-                if (entry.isIntersecting) {
-
-                    entry.target.classList.add(
-                        "timeline-visible"
-                    );
-
-                }
-
-            });
-
-        },
-        {
-            threshold: 0.15
         }
     );
 
-
-timelineItems.forEach(function (item) {
-
-    timelineObserver.observe(item);
-
-});
-
+}
 
 
 /* =========================================================
-   RESEARCH ORBIT
+   PUBLICATION EMPTY STATE
 ========================================================= */
 
-const researchVisual =
-    document.querySelector(".research-visual");
+function updatePublicationEmptyState() {
+
+    const publications =
+        document.querySelectorAll(
+            ".publication-item"
+        );
 
 
-if (researchVisual) {
+    const emptyState =
+        document.getElementById(
+            "noPublicationResults"
+        );
+
+
+    if (!emptyState) {
+        return;
+    }
+
+
+    const visibleCount =
+        Array.from(publications)
+            .filter(
+                publication =>
+                    !publication.classList.contains(
+                        "hidden"
+                    )
+            )
+            .length;
+
+
+    emptyState.style.display =
+        visibleCount === 0
+            ? "block"
+            : "none";
+
+}
+
+
+/* =========================================================
+   RESEARCH ORBIT INTERACTION
+========================================================= */
+
+function initResearchOrbit() {
+
+    const visual =
+        document.querySelector(
+            ".research-visual"
+        );
+
+
+    if (!visual) {
+        return;
+    }
+
 
     const nodes =
-        researchVisual.querySelectorAll(".orbit-node");
+        visual.querySelectorAll(
+            ".orbit-node"
+        );
 
 
-    researchVisual.addEventListener(
+    if (!nodes.length) {
+        return;
+    }
+
+
+    const reducedMotion =
+        window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+        ).matches;
+
+
+    if (reducedMotion) {
+        return;
+    }
+
+
+    visual.addEventListener(
         "mousemove",
-        function (event) {
+        event => {
 
             const rect =
-                researchVisual.getBoundingClientRect();
+                visual.getBoundingClientRect();
+
 
             const x =
-                event.clientX - rect.left;
+                event.clientX -
+                rect.left;
+
 
             const y =
-                event.clientY - rect.top;
+                event.clientY -
+                rect.top;
 
 
             const centerX =
                 rect.width / 2;
 
+
             const centerY =
                 rect.height / 2;
 
 
-            const moveX =
-                (x - centerX) / 35;
-
-            const moveY =
-                (y - centerY) / 35;
+            const offsetX =
+                (x - centerX) / 30;
 
 
-            nodes.forEach(function (node, index) {
+            const offsetY =
+                (y - centerY) / 30;
 
-                const multiplier =
-                    (index + 1) * 0.15;
 
-                node.style.translate =
-                    `${moveX * multiplier}px ${moveY * multiplier}px`;
+            nodes.forEach(
+                (node, index) => {
 
-            });
+                    const multiplier =
+                        (index + 1) * 0.08;
+
+
+                    node.style.translate =
+                        `${offsetX * multiplier}px ${offsetY * multiplier}px`;
+
+                }
+            );
 
         }
     );
 
 
-    researchVisual.addEventListener(
+    visual.addEventListener(
         "mouseleave",
-        function () {
+        () => {
 
-            nodes.forEach(function (node) {
+            nodes.forEach(node => {
 
-                node.style.translate = "0 0";
+                node.style.translate =
+                    "0 0";
 
             });
 
@@ -275,81 +825,131 @@ if (researchVisual) {
     );
 
 }
-
 
 
 /* =========================================================
-   RESUME / CV PLACEHOLDERS
+   PROFILE REVEAL
 ========================================================= */
 
-/*
-   Once you upload your files to GitHub, change:
+function initProfileReveal() {
 
-   resume.pdf
-   cv.pdf
-
-   to the exact names of your files.
-*/
+    const profile =
+        document.getElementById(
+            "profileReveal"
+        );
 
 
-const resumeButton =
-    document.getElementById("resumeDownload");
+    if (!profile) {
+        return;
+    }
 
 
-const cvButton =
-    document.getElementById("cvDownload");
+    const reveal =
+        () => {
 
-
-if (resumeButton) {
-
-    resumeButton.addEventListener(
-        "click",
-        function (event) {
-
-            event.preventDefault();
-
-            alert(
-                "Resume will be available here once the PDF is uploaded to the repository."
+            profile.classList.add(
+                "is-revealed"
             );
 
+        };
+
+
+    profile.addEventListener(
+        "mouseenter",
+        reveal
+    );
+
+
+    profile.addEventListener(
+        "click",
+        reveal
+    );
+
+
+    profile.addEventListener(
+        "touchstart",
+        reveal,
+        {
+            passive: true
         }
     );
 
 }
 
 
-if (cvButton) {
+/* =========================================================
+   BACK TO TOP
+========================================================= */
 
-    cvButton.addEventListener(
-        "click",
-        function (event) {
+function initBackToTop() {
 
-            event.preventDefault();
+    const button =
+        document.getElementById(
+            "backToTop"
+        );
 
-            alert(
-                "CV will be available here once the PDF is uploaded to the repository."
+
+    if (!button) {
+        return;
+    }
+
+
+    const toggleButton =
+        () => {
+
+            button.classList.toggle(
+                "visible",
+                window.scrollY > 600
             );
+
+        };
+
+
+    window.addEventListener(
+        "scroll",
+        toggleButton,
+        {
+            passive: true
+        }
+    );
+
+
+    button.addEventListener(
+        "click",
+        () => {
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
 
         }
     );
 
-}
 
+    toggleButton();
+
+}
 
 
 /* =========================================================
    FOOTER YEAR
 ========================================================= */
 
-const copyright =
-    document.querySelector(".copyright");
+function initCopyright() {
+
+    const copyright =
+        document.querySelector(
+            ".copyright"
+        );
 
 
-if (copyright) {
+    if (!copyright) {
+        return;
+    }
+
 
     copyright.textContent =
-        "© " +
-        new Date().getFullYear() +
-        " Jishnu Teja Dandamudi";
+        `© ${new Date().getFullYear()} Jishnu Teja Dandamudi`;
 
 }
