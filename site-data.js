@@ -75,49 +75,70 @@ const SITE_DATA = {
       role: "Research Intern",
       date: "August 2026 - Present",
       institution: "SRM University, AP",
-      mentor: "Dr Ashok Kumar Pradhan (Associate Professor)"
+      mentor: "Dr Ashok Kumar Pradhan (Associate Professor)",
+      certificate: "",
+      report: "",
+      github: ""
     },
     {
       id: "int-02",
       role: "Research Intern",
       date: "April 2026 - Present",
       institution: "Indian Institute of Information Technology, Kottayam - IIITK",
-      mentor: "Dr. Priyadharshini S (Assistant Professor)"
+      mentor: "Dr. Priyadharshini S (Assistant Professor)",
+      certificate: "",
+      report: "",
+      github: ""
     },
     {
       id: "int-03",
       role: "Research Intern",
       date: "January 2026 - June 2026",
       institution: "CYSTAR, Indian Institute of Technology, Madras",
-      mentor: "Dr. Chester Rebeiro (Professor)"
+      mentor: "Dr. Chester Rebeiro (Professor)",
+      certificate: "",
+      report: "",
+      github: ""
     },
     {
       id: "int-04",
       role: "Research Intern",
       date: "May 2026 - June 2026",
       institution: "National Remote Sensing Corporation - NRSC, ISRO, Hyderabad",
-      mentor: "Dr. Subrahmanyam Kandula (Scientist - SF)"
+      mentor: "Dr. Subrahmanyam Kandula (Scientist - SF)",
+      certificate: "",
+      report: "",
+      github: ""
     },
     {
       id: "int-05",
       role: "Research Intern",
       date: "April 2026 - May 2026",
       institution: "Satish Dhawan Space Centre - SDSC SHAR, ISRO, Sriharikota",
-      mentor: "Dr. Madankumar Rapuru (Scientist/Engineer-SF, CCTV/EIS/Range Operations(RO)/ISRO)"
+      mentor: "Dr. Madankumar Rapuru (Scientist/Engineer-SF, CCTV/EIS/Range Operations(RO)/ISRO)",
+      certificate: "",
+      report: "",
+      github: ""
     },
     {
       id: "int-06",
       role: "Research Tech Intern",
       date: "November 2025 - January 2026",
       institution: "Ministry of Defence, Government of India",
-      mentor: "Yogendra Chhetri (Wing Commander, Indian Armed Forces & Joint Director of Space Operations)"
+      mentor: "Yogendra Chhetri (Wing Commander, Indian Armed Forces & Joint Director of Space Operations)",
+      certificate: "",
+      report: "",
+      github: ""
     },
     {
       id: "int-07",
       role: "Tech Intern",
       date: "May 2025 - June 2025",
       institution: "NetElixir Digital Solutions Pvt. Ltd., Hyderabad",
-      mentor: ""
+      mentor: "",
+      certificate: "",
+      report: "",
+      github: ""
     }
   ],
 
@@ -344,14 +365,18 @@ const SITE_DATA = {
       quote: "Jishnu Teja demonstrates exemplary analytical rigor, innovative thinking in AI architectures, and remarkable dedication to high-impact scholarly research.",
       name: "Academic Mentor / Professor",
       designation: "Associate Professor / Scientist",
-      institution: "Partner Institution / University"
+      institution: "Partner Institution / University",
+      image: "",
+      document: ""
     },
     {
       id: "rec-02",
       quote: "His deep passion for Explainable AI, edge intelligence, and multidisciplinary dual-degree engineering consistently delivers publication-grade breakthroughs.",
       name: "Research Collaborator",
       designation: "Lead Scientist / Research Supervisor",
-      institution: "National Research Laboratory"
+      institution: "National Research Laboratory",
+      image: "",
+      document: ""
     }
   ]
 };

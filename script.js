@@ -170,6 +170,9 @@
   // BIBTEX CITATION GENERATOR
   // =========================================================
   function generateBibTeX(pub) {
+    if (pub.bibtex && pub.bibtex.trim()) {
+      return pub.bibtex.trim();
+    }
     const key = (pub.authors ? pub.authors.split(" ")[0].toLowerCase() : "jishnu") + (pub.year || "2026") + (pub.title ? pub.title.split(" ")[0].toLowerCase() : "");
     const entryType = pub.type === "JOURNAL" ? "article" : (pub.type === "BOOK CHAPTER" ? "incollection" : "inproceedings");
     
@@ -429,15 +432,24 @@
           .join("")
           .toUpperCase();
 
+        const avatarHtml = rec.image
+          ? `<img src="${rec.image}" alt="${rec.name}" onerror="this.style.display='none'; this.parentElement.textContent='${initials}'">`
+          : initials;
+
+        const docBtnHtml = rec.document
+          ? `<a href="${rec.document}" target="_blank" rel="noopener noreferrer" class="recommendation-doc-btn"><i class="fa-solid fa-file-lines"></i> View Letter / Doc</a>`
+          : "";
+
         return `
         <div class="recommendation-card" data-id="${rec.id}">
           <div>
             <div class="quote-mark">“</div>
             <p>${rec.quote}</p>
+            ${docBtnHtml}
           </div>
 
           <div class="recommendation-author">
-            <div class="author-avatar">${initials}</div>
+            <div class="author-avatar">${avatarHtml}</div>
             <div class="author-info">
               <strong>${rec.name}</strong>
               <span>${rec.designation} · ${rec.institution}</span>
@@ -529,6 +541,17 @@
 
     list.innerHTML = intList
       .map((item) => {
+        const hasActions = item.certificate || item.report || item.github;
+        const actionsHtml = hasActions
+          ? `
+          <div class="internship-actions">
+            ${item.certificate ? `<a href="${item.certificate}" target="_blank" rel="noopener noreferrer" class="timeline-btn"><i class="fa-solid fa-certificate"></i> View Certificate</a>` : ""}
+            ${item.report ? `<a href="${item.report}" target="_blank" rel="noopener noreferrer" class="timeline-btn"><i class="fa-solid fa-file-lines"></i> View Report</a>` : ""}
+            ${item.github ? `<a href="${item.github}" target="_blank" rel="noopener noreferrer" class="timeline-btn"><i class="fa-brands fa-github"></i> GitHub Repo</a>` : ""}
+          </div>
+          `
+          : "";
+
         return `
         <div class="timeline-item" data-id="${item.id}">
           <div class="timeline-marker"></div>
@@ -537,6 +560,7 @@
             <h3>${item.role}</h3>
             <p class="timeline-institution">${item.institution}</p>
             ${item.mentor ? `<p class="timeline-mentor">${item.mentor}</p>` : ""}
+            ${actionsHtml}
             ${
               loggedIn
                 ? `
@@ -964,6 +988,46 @@
       });
     }
 
+    // File pickers for repository paths
+    document.getElementById("recImagePicker")?.addEventListener("change", function (e) {
+      const file = e.target.files && e.target.files[0];
+      if (file) {
+        const folder = file.type.startsWith("image/") ? "images/" : "documents/";
+        document.getElementById("recImage").value = folder + file.name;
+        showToast(`Selected ${folder + file.name}`, "fa-solid fa-image");
+      }
+    });
+
+    document.getElementById("recDocPicker")?.addEventListener("change", function (e) {
+      const file = e.target.files && e.target.files[0];
+      if (file) {
+        const isImg = file.name.match(/\.(jpg|jpeg|png|webp|gif)$/i);
+        const folder = isImg ? "images/" : "documents/";
+        document.getElementById("recDocument").value = folder + file.name;
+        showToast(`Selected ${folder + file.name}`, "fa-solid fa-file-lines");
+      }
+    });
+
+    document.getElementById("intCertPicker")?.addEventListener("change", function (e) {
+      const file = e.target.files && e.target.files[0];
+      if (file) {
+        const isImg = file.type.startsWith("image/") || file.name.match(/\.(jpg|jpeg|png|webp|gif)$/i);
+        const folder = isImg ? "images/" : "documents/";
+        document.getElementById("intCertificate").value = folder + file.name;
+        showToast(`Selected ${folder + file.name}`, "fa-solid fa-certificate");
+      }
+    });
+
+    document.getElementById("intReportPicker")?.addEventListener("change", function (e) {
+      const file = e.target.files && e.target.files[0];
+      if (file) {
+        const isImg = file.name.match(/\.(jpg|jpeg|png|webp|gif)$/i);
+        const folder = isImg ? "images/" : "documents/";
+        document.getElementById("intReport").value = folder + file.name;
+        showToast(`Selected ${folder + file.name}`, "fa-solid fa-file-lines");
+      }
+    });
+
     // Export Data File for GitHub Pages
     function exportSiteDataFile() {
       const code = `/**
@@ -1050,6 +1114,7 @@ window.saveSiteData = function(data) {
     document.getElementById("pubLink").value = pub.link || "";
     document.getElementById("pubGithub").value = pub.github || "";
     document.getElementById("pubAward").value = pub.award || "";
+    document.getElementById("pubBibtex").value = pub.bibtex || "";
 
     document.getElementById("adminHubModal")?.classList.remove("active");
     document.getElementById("pubFormModal")?.classList.add("active");
@@ -1070,6 +1135,7 @@ window.saveSiteData = function(data) {
   document.getElementById("addNewPubBtn")?.addEventListener("click", () => {
     document.getElementById("pubForm").reset();
     document.getElementById("pubEditId").value = "";
+    document.getElementById("pubBibtex").value = "";
     document.getElementById("pubFormModalTitle").innerHTML = '<i class="fa-solid fa-file-circle-plus"></i> Add Research Publication';
     document.getElementById("adminHubModal")?.classList.remove("active");
     document.getElementById("pubFormModal")?.classList.add("active");
@@ -1088,6 +1154,7 @@ window.saveSiteData = function(data) {
     const link = document.getElementById("pubLink").value.trim();
     const github = document.getElementById("pubGithub").value.trim();
     const award = document.getElementById("pubAward").value.trim();
+    const bibtex = document.getElementById("pubBibtex").value.trim();
 
     if (editId) {
       // Update existing
@@ -1104,7 +1171,8 @@ window.saveSiteData = function(data) {
           abstract,
           link,
           github,
-          award
+          award,
+          bibtex
         };
       }
       showToast("Publication updated successfully!");
@@ -1125,7 +1193,8 @@ window.saveSiteData = function(data) {
         abstract,
         link,
         github,
-        award
+        award,
+        bibtex
       });
       showToast("New publication added!");
     }
@@ -1233,6 +1302,8 @@ window.saveSiteData = function(data) {
     document.getElementById("recName").value = rec.name || "";
     document.getElementById("recDesignation").value = rec.designation || "";
     document.getElementById("recInstitution").value = rec.institution || "";
+    document.getElementById("recImage").value = rec.image || "";
+    document.getElementById("recDocument").value = rec.document || "";
 
     document.getElementById("adminHubModal")?.classList.remove("active");
     document.getElementById("recFormModal")?.classList.add("active");
@@ -1253,6 +1324,8 @@ window.saveSiteData = function(data) {
   document.getElementById("addNewRecBtn")?.addEventListener("click", () => {
     document.getElementById("recForm").reset();
     document.getElementById("recEditId").value = "";
+    document.getElementById("recImage").value = "";
+    document.getElementById("recDocument").value = "";
     document.getElementById("recFormModalTitle").innerHTML = '<i class="fa-solid fa-comment-dots"></i> Add Recommendation';
     document.getElementById("adminHubModal")?.classList.remove("active");
     document.getElementById("recFormModal")?.classList.add("active");
@@ -1265,6 +1338,8 @@ window.saveSiteData = function(data) {
     const name = document.getElementById("recName").value.trim();
     const designation = document.getElementById("recDesignation").value.trim();
     const institution = document.getElementById("recInstitution").value.trim();
+    const image = document.getElementById("recImage").value.trim();
+    const documentPath = document.getElementById("recDocument").value.trim();
 
     if (editId) {
       const idx = siteData.recommendations.findIndex((r) => r.id === editId);
@@ -1274,7 +1349,9 @@ window.saveSiteData = function(data) {
           quote,
           name,
           designation,
-          institution
+          institution,
+          image,
+          document: documentPath
         };
       }
       showToast("Recommendation updated!");
@@ -1285,7 +1362,9 @@ window.saveSiteData = function(data) {
         quote,
         name,
         designation,
-        institution
+        institution,
+        image,
+        document: documentPath
       });
       showToast("New recommendation added!");
     }
@@ -1395,6 +1474,9 @@ window.saveSiteData = function(data) {
     document.getElementById("intDate").value = item.date || "";
     document.getElementById("intInstitution").value = item.institution || "";
     document.getElementById("intMentor").value = item.mentor || "";
+    document.getElementById("intCertificate").value = item.certificate || "";
+    document.getElementById("intReport").value = item.report || "";
+    document.getElementById("intGithub").value = item.github || "";
 
     document.getElementById("adminHubModal")?.classList.remove("active");
     document.getElementById("intFormModal")?.classList.add("active");
@@ -1415,6 +1497,9 @@ window.saveSiteData = function(data) {
   document.getElementById("addNewIntBtn")?.addEventListener("click", () => {
     document.getElementById("intForm").reset();
     document.getElementById("intEditId").value = "";
+    document.getElementById("intCertificate").value = "";
+    document.getElementById("intReport").value = "";
+    document.getElementById("intGithub").value = "";
     document.getElementById("intFormModalTitle").innerHTML = '<i class="fa-solid fa-briefcase"></i> Add Internship';
     document.getElementById("adminHubModal")?.classList.remove("active");
     document.getElementById("intFormModal")?.classList.add("active");
@@ -1427,6 +1512,9 @@ window.saveSiteData = function(data) {
     const date = document.getElementById("intDate").value.trim();
     const institution = document.getElementById("intInstitution").value.trim();
     const mentor = document.getElementById("intMentor").value.trim();
+    const certificate = document.getElementById("intCertificate").value.trim();
+    const report = document.getElementById("intReport").value.trim();
+    const github = document.getElementById("intGithub").value.trim();
 
     if (editId) {
       const idx = siteData.internships.findIndex((item) => item.id === editId);
@@ -1436,7 +1524,10 @@ window.saveSiteData = function(data) {
           role,
           date,
           institution,
-          mentor
+          mentor,
+          certificate,
+          report,
+          github
         };
       }
       showToast("Internship updated successfully!");
@@ -1447,7 +1538,10 @@ window.saveSiteData = function(data) {
         role,
         date,
         institution,
-        mentor
+        mentor,
+        certificate,
+        report,
+        github
       });
       showToast("New internship added!");
     }

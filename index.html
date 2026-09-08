@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
     <!-- Main Stylesheet (with cache-busting version) -->
-    <link rel="stylesheet" href="style.css?v=2.2">
+    <link rel="stylesheet" href="style.css?v=2.3">
 
     <!-- Critical In-Head Rules to Guarantee Modals are Hidden Prior to CSS Load -->
     <style>
@@ -166,10 +166,6 @@
                         <a href="https://github.com/cscprojishnu" target="_blank" rel="noopener noreferrer" class="social-link" id="heroGithub" aria-label="GitHub">
                             <i class="fa-brands fa-github"></i>
                             <span>GitHub</span>
-                        </a>
-                        <a href="mailto:djishnuteja2006@gmail.com?subject=Research%20Collaboration" class="social-link" id="heroEmail" aria-label="Email">
-                            <i class="fa-solid fa-envelope"></i>
-                            <span>Email</span>
                         </a>
                     </div>
                 </div>
@@ -905,6 +901,12 @@
                         <input type="text" id="pubAward" class="form-input" placeholder="e.g. Received 2nd Best Paper Award">
                     </div>
 
+                    <div class="form-group">
+                        <label class="form-label" for="pubBibtex">Custom BibTeX Citation (Optional)</label>
+                        <textarea id="pubBibtex" class="form-textarea" rows="4" placeholder="@inproceedings{...&#10;  title = {...},&#10;  author = {...}&#10;}"></textarea>
+                        <div class="form-hint">Paste full @article / @inproceedings citation. If left blank, BibTeX will be auto-generated from fields above.</div>
+                    </div>
+
                     <div class="modal-footer" style="padding-inline: 0; padding-bottom: 0;">
                         <button type="button" class="btn secondary-btn" id="cancelPubFormBtn">Cancel</button>
                         <button type="submit" class="btn primary-btn"><i class="fa-solid fa-floppy-disk"></i> Save Publication</button>
@@ -992,6 +994,27 @@
                     <div class="form-group">
                         <label class="form-label" for="recInstitution">Institution / Organization *</label>
                         <input type="text" id="recInstitution" class="form-input" placeholder="e.g. IIT Madras / ISRO / University" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="recImage">Recommender Photo / Image (Optional)</label>
+                            <div style="display: flex; gap: 8px;">
+                                <input type="text" id="recImage" class="form-input" placeholder="e.g. images/mentor.jpg or documents/mentor.png">
+                                <input type="file" id="recImagePicker" accept="image/*" style="display: none;">
+                                <button type="button" class="btn secondary-btn" style="padding: 6px 12px; font-size: 0.82rem; white-space: nowrap;" onclick="document.getElementById('recImagePicker').click()"><i class="fa-solid fa-folder-open"></i> Browse</button>
+                            </div>
+                            <div class="form-hint">Type path or browse file (e.g. images/photo.jpg or documents/photo.png)</div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="recDocument">Recommendation Letter / PDF (Optional)</label>
+                            <div style="display: flex; gap: 8px;">
+                                <input type="text" id="recDocument" class="form-input" placeholder="e.g. documents/recommendation.pdf">
+                                <input type="file" id="recDocPicker" accept=".pdf,.doc,.docx,image/*" style="display: none;">
+                                <button type="button" class="btn secondary-btn" style="padding: 6px 12px; font-size: 0.82rem; white-space: nowrap;" onclick="document.getElementById('recDocPicker').click()"><i class="fa-solid fa-folder-open"></i> Browse</button>
+                            </div>
+                            <div class="form-hint">Type path or browse file (e.g. documents/letter.pdf or images/letter.jpg)</div>
+                        </div>
                     </div>
 
                     <div class="modal-footer" style="padding-inline: 0; padding-bottom: 0;">
@@ -1090,6 +1113,32 @@
                         <input type="text" id="intMentor" class="form-input" placeholder="e.g. Dr Ashok Kumar Pradhan (Associate Professor)">
                     </div>
 
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="intCertificate">Certificate File / Link (Optional)</label>
+                            <div style="display: flex; gap: 8px;">
+                                <input type="text" id="intCertificate" class="form-input" placeholder="e.g. documents/cert_srm.pdf or images/cert.jpg">
+                                <input type="file" id="intCertPicker" accept=".pdf,.png,.jpg,.jpeg,image/*" style="display: none;">
+                                <button type="button" class="btn secondary-btn" style="padding: 6px 12px; font-size: 0.82rem; white-space: nowrap;" onclick="document.getElementById('intCertPicker').click()"><i class="fa-solid fa-folder-open"></i> Browse</button>
+                            </div>
+                            <div class="form-hint">Type path or browse file (e.g. documents/cert.pdf or images/cert.png)</div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="intReport">Report File / Link (Optional)</label>
+                            <div style="display: flex; gap: 8px;">
+                                <input type="text" id="intReport" class="form-input" placeholder="e.g. documents/internship_report.pdf">
+                                <input type="file" id="intReportPicker" accept=".pdf,.doc,.docx" style="display: none;">
+                                <button type="button" class="btn secondary-btn" style="padding: 6px 12px; font-size: 0.82rem; white-space: nowrap;" onclick="document.getElementById('intReportPicker').click()"><i class="fa-solid fa-folder-open"></i> Browse</button>
+                            </div>
+                            <div class="form-hint">Type path or browse file (e.g. documents/report.pdf)</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="intGithub">GitHub Repository Link (Optional)</label>
+                        <input type="url" id="intGithub" class="form-input" placeholder="https://github.com/cscprojishnu/...">
+                    </div>
+
                     <div class="modal-footer" style="padding-inline: 0; padding-bottom: 0;">
                         <button type="button" class="btn secondary-btn" id="cancelIntFormBtn">Cancel</button>
                         <button type="submit" class="btn primary-btn"><i class="fa-solid fa-floppy-disk"></i> Save Internship</button>
@@ -1111,10 +1160,10 @@
     <div class="toast-container" id="toastContainer"></div>
 
     <!-- Master Data File -->
-    <script src="site-data.js?v=2.1"></script>
+    <script src="site-data.js?v=2.3"></script>
 
     <!-- Core Website Logic -->
-    <script src="script.js?v=2.1"></script>
+    <script src="script.js?v=2.3"></script>
 </body>
 
 </html>
