@@ -15,8 +15,33 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-    <!-- Main Stylesheet -->
-    <link rel="stylesheet" href="style.css">
+    <!-- Main Stylesheet (with cache-busting version) -->
+    <link rel="stylesheet" href="style.css?v=2.0">
+
+    <!-- Critical In-Head Rules to Guarantee Modals are Hidden Prior to CSS Load -->
+    <style>
+        .modal-overlay {
+            display: none !important;
+            position: fixed !important;
+            inset: 0 !important;
+            z-index: 2000 !important;
+        }
+        .modal-overlay.active {
+            display: flex !important;
+        }
+        .admin-tab-content {
+            display: none !important;
+        }
+        .admin-tab-content.active {
+            display: block !important;
+        }
+        .admin-status-bar {
+            display: none !important;
+        }
+        .admin-status-bar.visible {
+            display: flex !important;
+        }
+    </style>
 </head>
 
 <body>
@@ -855,10 +880,10 @@
     <div class="toast-container" id="toastContainer"></div>
 
     <!-- Master Data File -->
-    <script src="site-data.js"></script>
+    <script src="site-data.js?v=2.0"></script>
 
     <!-- Core Website Logic -->
-    <script src="script.js"></script>
+    <script src="script.js?v=2.0"></script>
 </body>
 
 </html>

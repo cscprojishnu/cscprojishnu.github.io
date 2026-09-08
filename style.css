@@ -307,9 +307,10 @@ section {
    HERO / ABOUT SECTION
 ========================================================= */
 .hero {
-  padding-top: 130px;
-  padding-bottom: 70px;
-  min-height: calc(100vh - 80px);
+  padding-top: 110px;
+  padding-bottom: 50px;
+  min-height: 80vh;
+  max-height: 900px;
   display: flex;
   align-items: center;
 }
