@@ -460,8 +460,164 @@
       .join("");
   }
 
+  // =========================================================
+  // RENDER EDUCATION
+  // =========================================================
+  function renderEducation() {
+    const list = document.getElementById("educationList");
+    if (!list) return;
+
+    const eduList = siteData.education || [];
+    const loggedIn = isAdminLoggedIn();
+
+    list.innerHTML = eduList
+      .map((edu) => {
+        let icon = "fa-solid fa-graduation-cap";
+        const degLower = (edu.degree || "").toLowerCase();
+        if (degLower.includes("data science")) icon = "fa-solid fa-chart-line";
+        else if (degLower.includes("class 12")) icon = "fa-solid fa-school";
+        else if (degLower.includes("class 10")) icon = "fa-solid fa-book-open";
+
+        const statusClass = edu.isCurrent ? "education-status current" : "education-status";
+        const tags = Array.isArray(edu.tags) ? edu.tags : (edu.tags || "").split(",").map((t) => t.trim()).filter(Boolean);
+
+        return `
+        <article class="education-card" data-id="${edu.id}">
+          <div class="education-header">
+            <div class="education-icon">
+              <i class="${icon}"></i>
+            </div>
+            <span class="${statusClass}">${edu.status}</span>
+          </div>
+          <h3>${edu.degree}</h3>
+          <h4>${edu.institution}</h4>
+          ${edu.description ? `<p>${edu.description}</p>` : ""}
+          ${
+            tags.length > 0
+              ? `
+            <div class="education-tags">
+              ${tags.map((t) => `<span>${t}</span>`).join("")}
+            </div>
+          `
+              : ""
+          }
+          ${
+            loggedIn
+              ? `
+            <div class="education-actions">
+              <button class="btn-icon" onclick="window.editEducation('${edu.id}')" title="Edit Education"><i class="fa-solid fa-pen-to-square"></i></button>
+              <button class="btn-icon delete-btn" onclick="window.deleteEducation('${edu.id}')" title="Delete Education"><i class="fa-solid fa-trash"></i></button>
+            </div>
+          `
+              : ""
+          }
+        </article>
+      `;
+      })
+      .join("");
+  }
+
+  // =========================================================
+  // RENDER INTERNSHIPS
+  // =========================================================
+  function renderInternships() {
+    const list = document.getElementById("internshipsList");
+    if (!list) return;
+
+    const intList = siteData.internships || [];
+    const loggedIn = isAdminLoggedIn();
+
+    list.innerHTML = intList
+      .map((item) => {
+        return `
+        <div class="timeline-item" data-id="${item.id}">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <span class="timeline-date">${item.date}</span>
+            <h3>${item.role}</h3>
+            <p class="timeline-institution">${item.institution}</p>
+            ${item.mentor ? `<p class="timeline-mentor">${item.mentor}</p>` : ""}
+            ${
+              loggedIn
+                ? `
+              <div class="timeline-actions">
+                <button class="btn-icon" onclick="window.editInternship('${item.id}')" title="Edit Internship"><i class="fa-solid fa-pen-to-square"></i></button>
+                <button class="btn-icon delete-btn" onclick="window.deleteInternship('${item.id}')" title="Delete Internship"><i class="fa-solid fa-trash"></i></button>
+              </div>
+            `
+                : ""
+            }
+          </div>
+        </div>
+      `;
+      })
+      .join("");
+  }
+
+  // =========================================================
+  // RENDER PROFILE & STATS
+  // =========================================================
+  function renderProfileAndStats() {
+    const p = siteData.profile;
+    if (p) {
+      const nameEl = document.getElementById("heroName");
+      if (nameEl && p.name) {
+        const parts = p.name.split(" ");
+        const first = parts.slice(0, -1).join(" ");
+        const last = parts.slice(-1).join(" ");
+        nameEl.innerHTML = `${first} <span>${last}</span>`;
+      }
+
+      const availEl = document.getElementById("heroAvailabilityText");
+      if (availEl && p.status) availEl.textContent = p.status;
+
+      const tagEl = document.getElementById("heroTagline");
+      if (tagEl && p.tagline) tagEl.innerHTML = p.tagline;
+
+      const bio1El = document.getElementById("heroBio1");
+      if (bio1El && p.bioIntro) bio1El.innerHTML = p.bioIntro;
+
+      const bio2El = document.getElementById("heroBio2");
+      if (bio2El && p.bioDualDegree) bio2El.innerHTML = p.bioDualDegree;
+
+      const bio3El = document.getElementById("heroBio3");
+      if (bio3El && p.bioInterests) bio3El.innerHTML = p.bioInterests;
+
+      if (p.social) {
+        const li = document.getElementById("heroLinkedIn");
+        if (li && p.social.linkedin) li.href = p.social.linkedin;
+        const sc = document.getElementById("heroScholar");
+        if (sc && p.social.scholar) sc.href = p.social.scholar;
+        const sp = document.getElementById("heroScopus");
+        if (sp && p.social.scopus) sp.href = p.social.scopus;
+        const gh = document.getElementById("heroGithub");
+        if (gh && p.social.github) gh.href = p.social.github;
+        const em = document.getElementById("heroEmail");
+        if (em && p.social.email) em.href = p.social.email;
+      }
+    }
+
+    const stats = siteData.stats;
+    const statsGrid = document.getElementById("statsGrid");
+    if (statsGrid && stats && stats.length >= 4) {
+      statsGrid.innerHTML = stats
+        .map(
+          (s) => `
+        <div class="stat-card">
+          <strong class="stat-num" data-target="${parseInt(s.value, 10) || 0}">${s.value}</strong>
+          <span>${s.label}</span>
+        </div>
+      `
+        )
+        .join("");
+    }
+  }
+
   // Re-render everything
   function renderAll() {
+    renderProfileAndStats();
+    renderEducation();
+    renderInternships();
     renderPublications();
     renderProjects();
     renderRecommendations();
@@ -520,8 +676,8 @@
             <div class="admin-item-subtitle">${p.year} · ${p.type} · ${p.publisher || "N/A"}</div>
           </div>
           <div class="admin-item-actions">
-            <button class="btn-icon" onclick="window.editPublication('${p.id}')"><i class="fa-solid fa-pen"></i></button>
-            <button class="btn-icon delete-btn" onclick="window.deletePublication('${p.id}')"><i class="fa-solid fa-trash"></i></button>
+            <button class="btn-icon" onclick="window.editPublication('${p.id}')" title="Edit Publication"><i class="fa-solid fa-pen"></i></button>
+            <button class="btn-icon delete-btn" onclick="window.deletePublication('${p.id}')" title="Delete Publication"><i class="fa-solid fa-trash"></i></button>
           </div>
         </div>
       `
@@ -541,8 +697,50 @@
             <div class="admin-item-subtitle">${Array.isArray(p.tags) ? p.tags.join(", ") : p.tags}</div>
           </div>
           <div class="admin-item-actions">
-            <button class="btn-icon" onclick="window.editProject('${p.id}')"><i class="fa-solid fa-pen"></i></button>
-            <button class="btn-icon delete-btn" onclick="window.deleteProject('${p.id}')"><i class="fa-solid fa-trash"></i></button>
+            <button class="btn-icon" onclick="window.editProject('${p.id}')" title="Edit Project"><i class="fa-solid fa-pen"></i></button>
+            <button class="btn-icon delete-btn" onclick="window.deleteProject('${p.id}')" title="Delete Project"><i class="fa-solid fa-trash"></i></button>
+          </div>
+        </div>
+      `
+        )
+        .join("");
+    }
+
+    // Internships Admin List
+    const intListEl = document.getElementById("adminIntList");
+    if (intListEl) {
+      intListEl.innerHTML = (siteData.internships || [])
+        .map(
+          (i) => `
+        <div class="admin-list-item">
+          <div>
+            <div class="admin-item-title">${i.role}</div>
+            <div class="admin-item-subtitle">${i.institution} · <span style="color: var(--accent-cyan);">${i.date}</span></div>
+          </div>
+          <div class="admin-item-actions">
+            <button class="btn-icon" onclick="window.editInternship('${i.id}')" title="Edit Internship"><i class="fa-solid fa-pen"></i></button>
+            <button class="btn-icon delete-btn" onclick="window.deleteInternship('${i.id}')" title="Delete Internship"><i class="fa-solid fa-trash"></i></button>
+          </div>
+        </div>
+      `
+        )
+        .join("");
+    }
+
+    // Education Admin List
+    const eduListEl = document.getElementById("adminEduList");
+    if (eduListEl) {
+      eduListEl.innerHTML = (siteData.education || [])
+        .map(
+          (e) => `
+        <div class="admin-list-item">
+          <div>
+            <div class="admin-item-title">${e.degree}</div>
+            <div class="admin-item-subtitle">${e.institution} · <span style="color: var(--accent-cyan);">${e.status}</span></div>
+          </div>
+          <div class="admin-item-actions">
+            <button class="btn-icon" onclick="window.editEducation('${e.id}')" title="Edit Education"><i class="fa-solid fa-pen"></i></button>
+            <button class="btn-icon delete-btn" onclick="window.deleteEducation('${e.id}')" title="Delete Education"><i class="fa-solid fa-trash"></i></button>
           </div>
         </div>
       `
@@ -562,13 +760,55 @@
             <div class="admin-item-subtitle">${r.designation} (${r.institution})</div>
           </div>
           <div class="admin-item-actions">
-            <button class="btn-icon" onclick="window.editRecommendation('${r.id}')"><i class="fa-solid fa-pen"></i></button>
-            <button class="btn-icon delete-btn" onclick="window.deleteRecommendation('${r.id}')"><i class="fa-solid fa-trash"></i></button>
+            <button class="btn-icon" onclick="window.editRecommendation('${r.id}')" title="Edit Recommendation"><i class="fa-solid fa-pen"></i></button>
+            <button class="btn-icon delete-btn" onclick="window.deleteRecommendation('${r.id}')" title="Delete Recommendation"><i class="fa-solid fa-trash"></i></button>
           </div>
         </div>
       `
         )
         .join("");
+    }
+
+    // Populate Profile & Stats Form
+    const p = siteData.profile;
+    if (p) {
+      const nameInp = document.getElementById("profileNameInput");
+      if (nameInp) nameInp.value = p.name || "";
+      const availInp = document.getElementById("profileAvailabilityInput");
+      if (availInp) availInp.value = p.status || "";
+      const tagInp = document.getElementById("profileTaglineInput");
+      if (tagInp) tagInp.value = p.tagline || "";
+      const b1Inp = document.getElementById("profileBio1Input");
+      if (b1Inp) b1Inp.value = p.bioIntro || "";
+      const b2Inp = document.getElementById("profileBio2Input");
+      if (b2Inp) b2Inp.value = p.bioDualDegree || "";
+      const b3Inp = document.getElementById("profileBio3Input");
+      if (b3Inp) b3Inp.value = p.bioInterests || "";
+
+      if (p.social) {
+        const liInp = document.getElementById("profileLinkedInInput");
+        if (liInp) liInp.value = p.social.linkedin || "";
+        const scInp = document.getElementById("profileScholarInput");
+        if (scInp) scInp.value = p.social.scholar || "";
+        const spInp = document.getElementById("profileScopusInput");
+        if (spInp) spInp.value = p.social.scopus || "";
+        const ghInp = document.getElementById("profileGithubInput");
+        if (ghInp) ghInp.value = p.social.github || "";
+        const emInp = document.getElementById("profileEmailInput");
+        if (emInp) emInp.value = p.social.email || "";
+      }
+    }
+
+    const stats = siteData.stats || [];
+    if (stats.length >= 4) {
+      const v1 = document.getElementById("statVal1"); if (v1) v1.value = stats[0].value;
+      const l1 = document.getElementById("statLabel1"); if (l1) l1.value = stats[0].label;
+      const v2 = document.getElementById("statVal2"); if (v2) v2.value = stats[1].value;
+      const l2 = document.getElementById("statLabel2"); if (l2) l2.value = stats[1].label;
+      const v3 = document.getElementById("statVal3"); if (v3) v3.value = stats[2].value;
+      const l3 = document.getElementById("statLabel3"); if (l3) l3.value = stats[2].label;
+      const v4 = document.getElementById("statVal4"); if (v4) v4.value = stats[3].value;
+      const l4 = document.getElementById("statLabel4"); if (l4) l4.value = stats[3].label;
     }
   }
 
@@ -603,6 +843,8 @@
     const pubModal = document.getElementById("pubFormModal");
     const projModal = document.getElementById("projFormModal");
     const recModal = document.getElementById("recFormModal");
+    const eduModal = document.getElementById("eduFormModal");
+    const intModal = document.getElementById("intFormModal");
 
     // Open Admin Trigger (Navbar & Footer)
     function openAdminTrigger() {
@@ -625,7 +867,10 @@
 
     if (navAdminBtn) navAdminBtn.addEventListener("click", openAdminTrigger);
     if (footerAdminBtn) footerAdminBtn.addEventListener("click", openAdminTrigger);
-    if (openAdminDashboardBtn) openAdminDashboardBtn.addEventListener("click", () => hubModal.classList.add("active"));
+    if (openAdminDashboardBtn) openAdminDashboardBtn.addEventListener("click", () => {
+      hubModal.classList.add("active");
+      populateAdminLists();
+    });
 
     // Keyboard shortcut (Ctrl + Shift + A)
     window.addEventListener("keydown", (e) => {
@@ -644,9 +889,13 @@
     document.getElementById("cancelProjFormBtn")?.addEventListener("click", () => projModal.classList.remove("active"));
     document.getElementById("closeRecFormBtn")?.addEventListener("click", () => recModal.classList.remove("active"));
     document.getElementById("cancelRecFormBtn")?.addEventListener("click", () => recModal.classList.remove("active"));
+    document.getElementById("closeEduFormBtn")?.addEventListener("click", () => eduModal?.classList.remove("active"));
+    document.getElementById("cancelEduFormBtn")?.addEventListener("click", () => eduModal?.classList.remove("active"));
+    document.getElementById("closeIntFormBtn")?.addEventListener("click", () => intModal?.classList.remove("active"));
+    document.getElementById("cancelIntFormBtn")?.addEventListener("click", () => intModal?.classList.remove("active"));
 
     // Close on overlay backdrop click
-    [loginModal, hubModal, pubModal, projModal, recModal].forEach((m) => {
+    [loginModal, hubModal, pubModal, projModal, recModal, eduModal, intModal].forEach((m) => {
       if (!m) return;
       m.addEventListener("click", (e) => {
         if (e.target === m) m.classList.remove("active");
@@ -729,6 +978,10 @@ window.getSiteData = function() {
   if (local) {
     try {
       const parsed = JSON.parse(local);
+      if (!parsed.profile) parsed.profile = SITE_DATA.profile;
+      if (!parsed.stats || parsed.stats.length === 0) parsed.stats = SITE_DATA.stats;
+      if (!parsed.education || parsed.education.length === 0) parsed.education = SITE_DATA.education;
+      if (!parsed.internships || parsed.internships.length === 0) parsed.internships = SITE_DATA.internships;
       if (!parsed.publications || parsed.publications.length === 0) parsed.publications = SITE_DATA.publications;
       if (!parsed.projects || parsed.projects.length === 0) parsed.projects = SITE_DATA.projects;
       if (!parsed.recommendations || parsed.recommendations.length === 0) parsed.recommendations = SITE_DATA.recommendations;
@@ -1040,6 +1293,201 @@ window.saveSiteData = function(data) {
     window.saveSiteData(siteData);
     document.getElementById("recFormModal")?.classList.remove("active");
     renderAll();
+  });
+
+  // =========================================================
+  // EDUCATION ADD / EDIT / DELETE HANDLERS
+  // =========================================================
+  window.editEducation = function (eduId) {
+    const edu = (siteData.education || []).find((e) => e.id === eduId);
+    if (!edu) return;
+
+    document.getElementById("eduFormModalTitle").innerHTML = '<i class="fa-solid fa-graduation-cap"></i> Edit Education';
+    document.getElementById("eduEditId").value = edu.id;
+    document.getElementById("eduDegree").value = edu.degree || "";
+    document.getElementById("eduInstitution").value = edu.institution || "";
+    document.getElementById("eduStatus").value = edu.status || "";
+    document.getElementById("eduIsCurrent").checked = !!edu.isCurrent;
+    document.getElementById("eduDescription").value = edu.description || "";
+    document.getElementById("eduTags").value = Array.isArray(edu.tags) ? edu.tags.join(", ") : edu.tags || "";
+
+    document.getElementById("adminHubModal")?.classList.remove("active");
+    document.getElementById("eduFormModal")?.classList.add("active");
+  };
+
+  window.deleteEducation = function (eduId) {
+    const edu = (siteData.education || []).find((e) => e.id === eduId);
+    if (!edu) return;
+
+    if (confirm(`Are you sure you want to delete education entry:\n"${edu.degree}"?`)) {
+      siteData.education = siteData.education.filter((e) => e.id !== eduId);
+      window.saveSiteData(siteData);
+      renderAll();
+      showToast("Education entry deleted", "fa-solid fa-trash");
+    }
+  };
+
+  document.getElementById("addNewEduBtn")?.addEventListener("click", () => {
+    document.getElementById("eduForm").reset();
+    document.getElementById("eduEditId").value = "";
+    document.getElementById("eduFormModalTitle").innerHTML = '<i class="fa-solid fa-graduation-cap"></i> Add Education';
+    document.getElementById("adminHubModal")?.classList.remove("active");
+    document.getElementById("eduFormModal")?.classList.add("active");
+  });
+
+  document.getElementById("eduForm")?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const editId = document.getElementById("eduEditId").value;
+    const degree = document.getElementById("eduDegree").value.trim();
+    const institution = document.getElementById("eduInstitution").value.trim();
+    const status = document.getElementById("eduStatus").value.trim();
+    const isCurrent = document.getElementById("eduIsCurrent").checked;
+    const description = document.getElementById("eduDescription").value.trim();
+    const tags = document
+      .getElementById("eduTags")
+      .value.split(",")
+      .map((t) => t.trim())
+      .filter(Boolean);
+
+    if (editId) {
+      const idx = siteData.education.findIndex((item) => item.id === editId);
+      if (idx !== -1) {
+        siteData.education[idx] = {
+          ...siteData.education[idx],
+          degree,
+          institution,
+          status,
+          isCurrent,
+          description,
+          tags
+        };
+      }
+      showToast("Education updated successfully!");
+    } else {
+      const newId = "edu-" + Date.now();
+      siteData.education.push({
+        id: newId,
+        degree,
+        institution,
+        status,
+        isCurrent,
+        description,
+        tags
+      });
+      showToast("New education entry added!");
+    }
+
+    window.saveSiteData(siteData);
+    document.getElementById("eduFormModal")?.classList.remove("active");
+    renderAll();
+  });
+
+  // =========================================================
+  // INTERNSHIPS ADD / EDIT / DELETE HANDLERS
+  // =========================================================
+  window.editInternship = function (intId) {
+    const item = (siteData.internships || []).find((i) => i.id === intId);
+    if (!item) return;
+
+    document.getElementById("intFormModalTitle").innerHTML = '<i class="fa-solid fa-briefcase"></i> Edit Internship';
+    document.getElementById("intEditId").value = item.id;
+    document.getElementById("intRole").value = item.role || "";
+    document.getElementById("intDate").value = item.date || "";
+    document.getElementById("intInstitution").value = item.institution || "";
+    document.getElementById("intMentor").value = item.mentor || "";
+
+    document.getElementById("adminHubModal")?.classList.remove("active");
+    document.getElementById("intFormModal")?.classList.add("active");
+  };
+
+  window.deleteInternship = function (intId) {
+    const item = (siteData.internships || []).find((i) => i.id === intId);
+    if (!item) return;
+
+    if (confirm(`Are you sure you want to delete internship:\n"${item.role} at ${item.institution}"?`)) {
+      siteData.internships = siteData.internships.filter((i) => i.id !== intId);
+      window.saveSiteData(siteData);
+      renderAll();
+      showToast("Internship deleted", "fa-solid fa-trash");
+    }
+  };
+
+  document.getElementById("addNewIntBtn")?.addEventListener("click", () => {
+    document.getElementById("intForm").reset();
+    document.getElementById("intEditId").value = "";
+    document.getElementById("intFormModalTitle").innerHTML = '<i class="fa-solid fa-briefcase"></i> Add Internship';
+    document.getElementById("adminHubModal")?.classList.remove("active");
+    document.getElementById("intFormModal")?.classList.add("active");
+  });
+
+  document.getElementById("intForm")?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const editId = document.getElementById("intEditId").value;
+    const role = document.getElementById("intRole").value.trim();
+    const date = document.getElementById("intDate").value.trim();
+    const institution = document.getElementById("intInstitution").value.trim();
+    const mentor = document.getElementById("intMentor").value.trim();
+
+    if (editId) {
+      const idx = siteData.internships.findIndex((item) => item.id === editId);
+      if (idx !== -1) {
+        siteData.internships[idx] = {
+          ...siteData.internships[idx],
+          role,
+          date,
+          institution,
+          mentor
+        };
+      }
+      showToast("Internship updated successfully!");
+    } else {
+      const newId = "int-" + Date.now();
+      siteData.internships.unshift({
+        id: newId,
+        role,
+        date,
+        institution,
+        mentor
+      });
+      showToast("New internship added!");
+    }
+
+    window.saveSiteData(siteData);
+    document.getElementById("intFormModal")?.classList.remove("active");
+    renderAll();
+  });
+
+  // =========================================================
+  // PROFILE & BIO & STATS FORM HANDLER
+  // =========================================================
+  document.getElementById("profileForm")?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    if (!siteData.profile) siteData.profile = {};
+    if (!siteData.profile.social) siteData.profile.social = {};
+
+    siteData.profile.name = document.getElementById("profileNameInput").value.trim();
+    siteData.profile.status = document.getElementById("profileAvailabilityInput").value.trim();
+    siteData.profile.tagline = document.getElementById("profileTaglineInput").value.trim();
+    siteData.profile.bioIntro = document.getElementById("profileBio1Input").value.trim();
+    siteData.profile.bioDualDegree = document.getElementById("profileBio2Input").value.trim();
+    siteData.profile.bioInterests = document.getElementById("profileBio3Input").value.trim();
+
+    siteData.profile.social.linkedin = document.getElementById("profileLinkedInInput").value.trim();
+    siteData.profile.social.scholar = document.getElementById("profileScholarInput").value.trim();
+    siteData.profile.social.scopus = document.getElementById("profileScopusInput").value.trim();
+    siteData.profile.social.github = document.getElementById("profileGithubInput").value.trim();
+    siteData.profile.social.email = document.getElementById("profileEmailInput").value.trim();
+
+    siteData.stats = [
+      { value: document.getElementById("statVal1").value.trim() || "10+", label: document.getElementById("statLabel1").value.trim() || "Research Papers" },
+      { value: document.getElementById("statVal2").value.trim() || "12+", label: document.getElementById("statLabel2").value.trim() || "Published / Accepted" },
+      { value: document.getElementById("statVal3").value.trim() || "5+", label: document.getElementById("statLabel3").value.trim() || "Research Projects" },
+      { value: document.getElementById("statVal4").value.trim() || "7+", label: document.getElementById("statLabel4").value.trim() || "Research Experiences" }
+    ];
+
+    window.saveSiteData(siteData);
+    renderAll();
+    showToast("Profile & Stats saved successfully!", "fa-solid fa-circle-check");
   });
 
   // =========================================================

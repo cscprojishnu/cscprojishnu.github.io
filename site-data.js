@@ -27,7 +27,98 @@ const SITE_DATA = {
     { value: "10+", label: "Research Papers" },
     { value: "12+", label: "Published / Accepted" },
     { value: "5+", label: "Research Projects" },
-    { value: "4+", label: "Research Experiences" }
+    { value: "7+", label: "Research Experiences" }
+  ],
+
+  education: [
+    {
+      id: "edu-01",
+      degree: "B.Tech in Computer Science and Engineering (with Artificial Intelligence) - AIE",
+      institution: "Amrita Vishwa Vidyapeetham, Coimbatore, Tamil Nadu",
+      status: "2024 - CURRENT",
+      isCurrent: true,
+      description: "Undergraduate study focused on Computer Science, Artificial Intelligence, Machine Learning, Deep Learning, Computer Vision and intelligent systems.",
+      tags: ["Computer Science", "Artificial Intelligence", "Mathematics for AI", "AI Research"]
+    },
+    {
+      id: "edu-02",
+      degree: "BS in Data Science and Applications",
+      institution: "Indian Institute of Technology Madras",
+      status: "2024 - CURRENT",
+      isCurrent: true,
+      description: "Parallel undergraduate study developing a strong foundation in data science, statistics, programming, machine learning and analytical methods.",
+      tags: ["Data Science", "Statistics", "Machine Learning"]
+    },
+    {
+      id: "edu-03",
+      degree: "Class 12",
+      institution: "JAYANTHI PUBLIC SENIOR SECONDARY SCHOOL, TIRUPUR, TAMIL NADU",
+      status: "COMPLETED - 2024",
+      isCurrent: false,
+      description: "Senior secondary education specializing in Computer Science, Mathematics, and Physical Sciences.",
+      tags: ["Class 12", "Computer Science", "PCM"]
+    },
+    {
+      id: "edu-04",
+      degree: "Class 10",
+      institution: "DAV BOYS SENIOR SECONDARY SCHOOL, CHENNAI, TAMIL NADU",
+      status: "COMPLETED",
+      isCurrent: false,
+      description: "Foundational secondary education emphasizing mathematics and scientific reasoning.",
+      tags: ["Class 10", "Foundational Studies"]
+    }
+  ],
+
+  internships: [
+    {
+      id: "int-01",
+      role: "Research Intern",
+      date: "August 2026 - Present",
+      institution: "SRM University, AP",
+      mentor: "Dr Ashok Kumar Pradhan (Associate Professor)"
+    },
+    {
+      id: "int-02",
+      role: "Research Intern",
+      date: "April 2026 - Present",
+      institution: "Indian Institute of Information Technology, Kottayam - IIITK",
+      mentor: "Dr. Priyadharshini S (Assistant Professor)"
+    },
+    {
+      id: "int-03",
+      role: "Research Intern",
+      date: "January 2026 - June 2026",
+      institution: "CYSTAR, Indian Institute of Technology, Madras",
+      mentor: "Dr. Chester Rebeiro (Professor)"
+    },
+    {
+      id: "int-04",
+      role: "Research Intern",
+      date: "May 2026 - June 2026",
+      institution: "National Remote Sensing Corporation - NRSC, ISRO, Hyderabad",
+      mentor: "Dr. Subrahmanyam Kandula (Scientist - SF)"
+    },
+    {
+      id: "int-05",
+      role: "Research Intern",
+      date: "April 2026 - May 2026",
+      institution: "Satish Dhawan Space Centre - SDSC SHAR, ISRO, Sriharikota",
+      mentor: "Dr. Madankumar Rapuru (Scientist/Engineer-SF, CCTV/EIS/Range Operations(RO)/ISRO)"
+    },
+    {
+      id: "int-06",
+      role: "Research Tech Intern",
+      date: "November 2025 - January 2026",
+      institution: "Ministry of Defence, Government of India",
+      mentor: "Yogendra Chhetri (Wing Commander, Indian Armed Forces & Joint Director of Space Operations)"
+    },
+    {
+      id: "int-07",
+      role: "Tech Intern",
+      date: "May 2025 - June 2025",
+      institution: "NetElixir Digital Solutions Pvt. Ltd., Hyderabad",
+      mentor: ""
+    }
   ],
 
   publications: [
@@ -271,16 +362,13 @@ window.getSiteData = function() {
   if (local) {
     try {
       const parsed = JSON.parse(local);
-      // Fallback safety to preserve default lists if empty
-      if (!parsed.publications || parsed.publications.length === 0) {
-        parsed.publications = SITE_DATA.publications;
-      }
-      if (!parsed.projects || parsed.projects.length === 0) {
-        parsed.projects = SITE_DATA.projects;
-      }
-      if (!parsed.recommendations || parsed.recommendations.length === 0) {
-        parsed.recommendations = SITE_DATA.recommendations;
-      }
+      if (!parsed.profile) parsed.profile = SITE_DATA.profile;
+      if (!parsed.stats || parsed.stats.length === 0) parsed.stats = SITE_DATA.stats;
+      if (!parsed.education || parsed.education.length === 0) parsed.education = SITE_DATA.education;
+      if (!parsed.internships || parsed.internships.length === 0) parsed.internships = SITE_DATA.internships;
+      if (!parsed.publications || parsed.publications.length === 0) parsed.publications = SITE_DATA.publications;
+      if (!parsed.projects || parsed.projects.length === 0) parsed.projects = SITE_DATA.projects;
+      if (!parsed.recommendations || parsed.recommendations.length === 0) parsed.recommendations = SITE_DATA.recommendations;
       return parsed;
     } catch(e) {
       console.warn("Error reading cached site data, loading defaults", e);

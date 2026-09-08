@@ -317,9 +317,9 @@ section {
 
 .hero-grid {
   display: grid;
-  grid-template-columns: 240px 1.4fr 320px;
+  grid-template-columns: 220px 1fr 380px;
   align-items: center;
-  gap: clamp(24px, 3.5vw, 60px);
+  gap: clamp(20px, 3vw, 45px);
   width: 100%;
 }
 
@@ -592,27 +592,21 @@ section {
   transform: scale(1.15);
 }
 
-/* Hero Action Buttons */
-.hero-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14px;
-  margin-top: 8px;
-}
-
+/* UI Buttons */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  padding: 12px 24px;
-  font-size: 0.92rem;
+  gap: 8px;
+  padding: 10px 18px;
+  font-size: 0.88rem;
   font-weight: 600;
   border-radius: var(--radius-sm);
   cursor: pointer;
   transition: var(--transition);
   position: relative;
   overflow: hidden;
+  text-decoration: none;
 }
 
 .btn-primary, .primary-btn {
@@ -620,22 +614,6 @@ section {
   color: #ffffff;
   border: none;
   box-shadow: 0 4px 20px -2px rgba(37, 99, 235, 0.45);
-}
-
-.btn-primary::after, .primary-btn::after {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(60deg, transparent 40%, rgba(255, 255, 255, 0.2) 50%, transparent 60%);
-  transform: rotate(25deg) translateY(-100%);
-  transition: transform 0.75s ease;
-}
-
-.btn-primary:hover::after, .primary-btn:hover::after {
-  transform: rotate(25deg) translateY(100%);
 }
 
 .btn-primary:hover, .primary-btn:hover {
@@ -659,21 +637,21 @@ section {
 }
 
 /* =========================================================
-   3D RESEARCH ORBIT VISUAL
+   3D RESEARCH ORBIT VISUAL (8 TOPICS EXPANDED)
 ========================================================= */
 .research-visual {
   position: relative;
-  width: 320px;
-  height: 320px;
+  width: 380px;
+  height: 380px;
   margin: 0 auto;
 }
 
 .visual-glow {
   position: absolute;
-  inset: 40px;
+  inset: 35px;
   border-radius: 50%;
   background: radial-gradient(circle, rgba(56, 189, 248, 0.18) 0%, rgba(129, 140, 248, 0.12) 40%, transparent 70%);
-  filter: blur(20px);
+  filter: blur(22px);
   pointer-events: none;
 }
 
@@ -687,22 +665,22 @@ section {
 }
 
 .orbit-one {
-  width: 160px;
-  height: 160px;
+  width: 180px;
+  height: 180px;
   border: 1px dashed rgba(56, 189, 248, 0.25);
   animation: orbit-spin 40s linear infinite;
 }
 
 .orbit-two {
-  width: 235px;
-  height: 235px;
+  width: 270px;
+  height: 270px;
   border: 1px solid rgba(129, 140, 248, 0.18);
   animation: orbit-spin-rev 55s linear infinite;
 }
 
 .orbit-three {
-  width: 310px;
-  height: 310px;
+  width: 360px;
+  height: 360px;
   border: 1px dashed rgba(168, 85, 247, 0.15);
   animation: orbit-spin 70s linear infinite;
 }
@@ -721,8 +699,8 @@ section {
   position: absolute;
   left: 50%;
   top: 50%;
-  width: 96px;
-  height: 96px;
+  width: 88px;
+  height: 88px;
   transform: translate(-50%, -50%);
   z-index: 10;
   border-radius: 50%;
@@ -736,7 +714,7 @@ section {
 
 .research-core span {
   font-family: var(--font-heading);
-  font-size: 1.5rem;
+  font-size: 1.45rem;
   font-weight: 800;
   color: #ffffff;
   letter-spacing: 1px;
@@ -753,23 +731,24 @@ section {
   align-items: center;
   justify-content: center;
   text-align: center;
-  background: rgba(13, 20, 36, 0.85);
+  background: rgba(13, 20, 36, 0.88);
   backdrop-filter: blur(8px);
   border: 1px solid var(--border-light);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.45);
   z-index: 20;
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
   cursor: default;
+  padding: 4px;
 }
 
 .orbit-node i {
-  font-size: 1.05rem;
+  font-size: 0.95rem;
   color: var(--accent-cyan);
   margin-bottom: 2px;
 }
 
 .orbit-node span {
-  font-size: 0.62rem;
+  font-size: 0.58rem;
   font-weight: 600;
   color: var(--text-primary);
   line-height: 1.1;
@@ -779,33 +758,52 @@ section {
 .orbit-node:hover {
   border-color: var(--accent-cyan);
   box-shadow: 0 0 20px rgba(56, 189, 248, 0.5);
-  transform: scale(1.12);
+  transform: scale(1.14);
 }
 
-/* Node positions */
-.node-one {
-  left: 50%;
+/* 8 Symmetrical Node Positions */
+.node-one, .node-vision {
   top: 0;
-  transform: translateX(-50%);
-}
-.node-two {
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-}
-.node-three {
   left: 50%;
-  bottom: 0;
   transform: translateX(-50%);
 }
-.node-four {
-  left: 0;
+
+.node-two, .node-image {
+  top: 10%;
+  right: 11%;
+}
+
+.node-three, .node-mldl {
   top: 50%;
+  right: 0;
   transform: translateY(-50%);
 }
-.node-five {
-  right: 18px;
-  bottom: 24px;
+
+.node-four, .node-signal {
+  bottom: 10%;
+  right: 11%;
+}
+
+.node-five, .node-xai {
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.node-six, .node-jetson {
+  bottom: 10%;
+  left: 11%;
+}
+
+.node-seven, .node-quantum {
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+}
+
+.node-eight, .node-edge {
+  top: 10%;
+  left: 11%;
 }
 
 /* =========================================================
@@ -1877,8 +1875,11 @@ footer {
   display: flex;
   border-bottom: 1px solid var(--border);
   background: rgba(255, 255, 255, 0.02);
-  padding: 0 24px;
-  gap: 8px;
+  padding: 0 16px;
+  gap: 6px;
+  overflow-x: auto;
+  white-space: nowrap;
+  scrollbar-width: thin;
 }
 
 .admin-tab-btn {
@@ -1972,6 +1973,12 @@ footer {
   background: rgba(244, 63, 94, 0.2);
   border-color: var(--accent-rose);
   color: #fb7185;
+}
+
+.education-actions, .timeline-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 14px;
 }
 
 /* Floating Admin Bar when logged in */
